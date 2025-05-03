@@ -7,6 +7,8 @@ import Plans from "./pages/Plans";
 import Services from "./pages/Services";
 import Contact from "./pages/Plans";
 import './App.css'
+import Task from "./components/dashboard/Task";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const MainLayout = () => {
   return (
@@ -27,6 +29,8 @@ const router = createBrowserRouter([
       { path: "/plans", element: <Plans /> },
       { path: "/services", element: <Services /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/task", element: <Task /> },
       { path: "*", element: <div>Page not found.</div> },
     ]
   }
