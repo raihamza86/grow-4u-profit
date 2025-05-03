@@ -12,16 +12,16 @@ const HeroSection = () => {
         `}
       </style>
 
-      <div className="hero-gradient flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-12 text-black">
-        <div className="text-left space-y-3">
-          <h1 className="text-3xl md:text-5xl font-bold">Membership Plan</h1>
-          <p className="text-base md:text-lg">Join with us.</p>
+      <div className="hero-gradient flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 text-black">
+        <div className="text-left space-y-4 max-w-md">
+          <h1 className="text-3xl font-bold">Membership Plan</h1>
+          <p className="text-lg md:text-xl">Join with us.</p>
         </div>
-        <div className="mt-8 md:mt-0">
+        <div className="mt-6 md:mt-0">
           <img
             src={moneyBagImage}
             alt="Membership Icon"
-            className=""
+            className="w-40 md:w-56 h-auto mx-auto"
           />
         </div>
       </div>

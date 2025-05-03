@@ -56,7 +56,7 @@ const Card = ({ title, price, validity, dailyTask, taskRate, dailyEarning, total
             </div>
 
             {/* Buy Now Button */}
-            <button className="block mx-auto max-w-[90%] bg-gradient-to-b from-[#EC7F95] to-[#E2395A] hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition mb-6">
+            <button className="block mx-auto max-w-[90%] bg-gradient-to-b from-[#EC7F95] to-[#E2395A] hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition mb-6 cursor-pointer">
                 Buy Now
             </button>
         </div>
@@ -275,10 +275,11 @@ const Deals = () => {
 
     return (
         <>
-                <div className='mx-auto px-32 bg-body bg-[#FEB30C] pt-3 text-2xl font-bold text-green-500 hover:text-blue-500 transition'>
+               
+            <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16">
+            <div className='mx-auto bg-body bg-[#FEB30C]  text-2xl font-bold text-green-500 hover:text-blue-500 transition pt-3'>
                     <a href="/">Back Now</a>
                 </div>
-            <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                     {plans.map((plan, index) => (
                         <Card key={index} {...plan} />

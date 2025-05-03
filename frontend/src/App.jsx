@@ -6,7 +6,11 @@ import Developer from "./pages/Developer";
 import Plans from "./pages/Plans";
 import Services from "./pages/Services";
 import Contact from "./pages/Plans";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import './App.css'
+import ReferralLinks from "./pages/ReferralLinks";
+
 
 const MainLayout = () => {
   return (
@@ -27,6 +31,9 @@ const router = createBrowserRouter([
       { path: "/plans", element: <Plans /> },
       { path: "/services", element: <Services /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/referrallink", element: <ReferralLinks /> },
       { path: "*", element: <div>Page not found.</div> },
     ]
   }
