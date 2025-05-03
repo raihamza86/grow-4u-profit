@@ -53,7 +53,7 @@ const Task = () => {
         </div>
       </div>
       <div className="bg-black">
-        <div className="flex px-20 border-b-1 border-[#ccc] py-6 items-center justify-between  text-white">
+        <div className="flex px-10 md:flex-row flex-col gap-[10px] md:px-20 border-b-1 border-[#ccc] py-6 items-center justify-between  text-white">
           <p>
             آج جس وقت پر آپ نے ایڈ دیکھ کر اسکا منافع لیا ہوگا کل اسی وقت آُپکو
             دوبارہ ایڈ دیکھ کر اسکا منافع کمانا ہوگا
@@ -63,7 +63,7 @@ const Task = () => {
           </p>
         </div>
 
-        <div className="flex px-20 mt-1.5 flex-wrap w-[78%] m-auto gap-[60px] py-20">
+        <div className="flex px-10 justify-center md:px-20 mt-1.5 flex-wrap w-[78%] m-auto gap-[60px] py-20">
           {tags.map((item, index) => {
             return (
               <div key={index} className="flex items-center flex-col">
