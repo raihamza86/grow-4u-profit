@@ -9,6 +9,8 @@ import Contact from "./pages/Plans";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import './App.css'
+import Task from "./components/dashboard/Task";
+import Dashboard from "./components/dashboard/Dashboard";
 import ReferralLinks from "./pages/ReferralLinks";
 
 
@@ -31,6 +33,8 @@ const router = createBrowserRouter([
       { path: "/plans", element: <Plans /> },
       { path: "/services", element: <Services /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/task", element: <Task /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/referrallink", element: <ReferralLinks /> },

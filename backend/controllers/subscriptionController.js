@@ -2,40 +2,47 @@ const Subscription = require('../models/Subscription');
 const Wallet = require('../models/Wallet');
 const sendEmail = require('../utils/sendEmail');
 const User = require('../models/User');
+const Package = require('../models/Package');
 
 exports.purchaseSubscription = async (req, res) => {
     try {
-        const { packageName, price, dailyEarning, durationDays, transactionId } = req.body;
+        const { packageId, transactionId } = req.body;
         const screenshot = req.file ? req.file.path : null; // using multer
 
         if (!transactionId || !screenshot) {
             return res.status(400).json({ message: "Transaction ID and Screenshot are required" });
         }
 
+        const selectedPackage = await Package.findById(packageId);
+        if (!selectedPackage) {
+            return res.status(404).json({ message: 'Package not found' });
+        }
+
         const wallet = await Wallet.findOne({ user: req.user._id });
-        if (!wallet || wallet.balance < price) {
+        if (!wallet || wallet.balance < selectedPackage.price) {
             return res.status(400).json({ message: 'Insufficient wallet balance' });
         }
 
+
         // Deduct wallet
-        wallet.balance -= price;
+        wallet.balance -= selectedPackage.price;
         wallet.transactions.push({
             type: 'Withdraw',
-            amount: price,
-            notes: `Purchased package: ${packageName}`
+            amount: selectedPackage.price,
+            notes: `Purchased package: ${selectedPackage.title}`
         });
         await wallet.save();
 
         const start = new Date();
         const end = new Date();
-        end.setDate(start.getDate() + durationDays);
+        end.setDate(start.getDate() + selectedPackage.durationDays);
 
         const newSubscription = new Subscription({
             user: req.user._id,
-            packageName,
-            price,
-            dailyEarning,
-            durationDays,
+            package: selectedPackage._id,
+            price: selectedPackage.price,
+            dailyEarning: selectedPackage.dailyEarning,
+            durationDays: selectedPackage.durationDays,
             startDate: start,
             endDate: end,
             transactionId,
@@ -50,7 +57,7 @@ exports.purchaseSubscription = async (req, res) => {
 
         await sendEmail(user.email, 'Subscription Requested', `
             <h3>Hello ${user.name},</h3>
-            <p>Your subscription request for <strong>${packageName}</strong> has been received and is under review.</p>
+            <p>Your subscription request for <strong>${selectedPackage.packageName}</strong> has been received and is under review.</p>
           `);
 
 
@@ -60,7 +67,7 @@ exports.purchaseSubscription = async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error', error: err });
     }
 };
 

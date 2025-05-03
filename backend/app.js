@@ -8,6 +8,7 @@ const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const walletRoutes = require("./routes/walletRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const withdrawRoutes = require("./routes/withdrawRoutes");
 
 dotenv.config();
 connectDB();
@@ -28,6 +29,7 @@ app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/wallet', walletRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/withdraw', withdrawRoutes);
 
 
 
