@@ -1,0 +1,29 @@
+@keyframes gradientX {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    animation: gradientX 8s ease infinite;
+    background-size: 400% 100%;
+    background-position: 0% 50%;
+  }
+  
+  .bg-gradient-custom {
+    background-image: linear-gradient(
+      to right,
+      #10b981,  /* Green */
+      #6366f1,  /* Indigo */
+      #9333ea,  /* Purple */
+      #ec4899,  /* Pink */
+      #10b981   /* Green repeated to loop smoothly */
+    );
+  }
+  
