@@ -3,6 +3,7 @@ const router = express.Router();
 const { getAllSubscriptions, verifySubscription, getPendingSubscriptions, rejectSubscription, getAllUsers, updateUserRole, deleteUser } = require('../controllers/adminController');
 const { auth, isAdmin } = require('../middlewares/auth');
 const { getAllPackages, createPackage, updatePackage, deletePackage } = require('../controllers/adminControllers/packageController');
+const { approveWithdrawRequest, rejectWithdrawRequest, getAllWithdrawRequests } = require('../controllers/adminControllers/withdrawController');
 
 
 //  ** Subscription Controllers:
@@ -24,5 +25,11 @@ router.get('/packages', auth, isAdmin, getAllPackages);
 router.post('/packages', auth, isAdmin, createPackage);
 router.put('/packages/:id', auth, isAdmin, updatePackage);
 router.delete('/packages/:id', auth, isAdmin, deletePackage);
+
+
+// ** Withdraw Controller:
+router.get('/withdraws', auth, isAdmin, getAllWithdrawRequests);
+router.put('/withdraws/approve/:id', auth, isAdmin, approveWithdrawRequest);
+router.put('/withdraws/reject/:id', auth, isAdmin, rejectWithdrawRequest);
 
 module.exports = router;
