@@ -1,5 +1,6 @@
 const Subscription = require('../models/Subscription');
 const User = require('../models/User');
+const Wallet = require("../models/Wallet");
 const sendEmail = require('../utils/sendEmail');
 
 exports.getAllSubscriptions = async (req, res) => {
@@ -80,5 +81,47 @@ exports.rejectSubscription = async (req, res) => {
         res.status(200).json({ message: 'Subscription rejected successfully' });
     } catch (err) {
         res.status(500).json({ message: 'Failed to reject subscription', error: err });
+    }
+};
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password -otpCode -otpExpiresAt -wallet');
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ message: "Failed to fetch users" })
+    }
+};
+
+exports.updateUserRole = async (req, res) => {
+    const { userId, role } = req.body;
+
+    if (!['user', 'admin'].includes(role)) {
+        return res.status(400).json({ message: 'Invalid role' });
+    }
+
+    try {
+        const user = await User.findByIdAndUpdate(userId, { role }, { new: true }).select('-password');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        res.status(200).json({ message: 'User role updated', user });
+    } catch (err) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const user = await User.findByIdAndDelete(userId);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // Optional: delete their wallet too
+        await Wallet.deleteOne({ user: userId });
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: 'Server Error', error: err });
     }
 };

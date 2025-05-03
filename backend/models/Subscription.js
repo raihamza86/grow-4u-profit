@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const subscriptionSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    packageName: String,
+    package: { type: mongoose.Schema.Types.ObjectId, ref: 'Package' },
     price: Number,
     dailyEarning: Number,
     durationDays: Number,
