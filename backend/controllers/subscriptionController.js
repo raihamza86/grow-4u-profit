@@ -1,9 +1,16 @@
 const Subscription = require('../models/Subscription');
 const Wallet = require('../models/Wallet');
+const sendEmail = require('../utils/sendEmail');
+const User = require('../models/User');
 
 exports.purchaseSubscription = async (req, res) => {
     try {
-        const { packageName, price, dailyEarning, durationDays } = req.body;
+        const { packageName, price, dailyEarning, durationDays, transactionId } = req.body;
+        const screenshot = req.file ? req.file.path : null; // using multer
+
+        if (!transactionId || !screenshot) {
+            return res.status(400).json({ message: "Transaction ID and Screenshot are required" });
+        }
 
         const wallet = await Wallet.findOne({ user: req.user._id });
         if (!wallet || wallet.balance < price) {
@@ -31,13 +38,24 @@ exports.purchaseSubscription = async (req, res) => {
             durationDays,
             startDate: start,
             endDate: end,
-            paymentStatus: 'Paid',
+            transactionId,
+            paymentScreenshot: screenshot,
+            paymentStatus: 'Pending',
+            active: false,
         });
 
         await newSubscription.save();
 
+        const user = await User.findById(req.user._id);
+
+        await sendEmail(user.email, 'Subscription Requested', `
+            <h3>Hello ${user.name},</h3>
+            <p>Your subscription request for <strong>${packageName}</strong> has been received and is under review.</p>
+          `);
+
+
         res.status(201).json({
-            message: 'Subscription activated',
+            message: 'Subscription created and pending verification',
             subscription: newSubscription,
         });
     } catch (err) {

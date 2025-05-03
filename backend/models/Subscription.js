@@ -10,8 +10,12 @@ const subscriptionSchema = new mongoose.Schema({
     endDate: Date,
     lastEarningDate: { type: Date },
     totalEarned: { type: Number, default: 0 },
-    active: { type: Boolean, default: true },
-    paymentStatus: { type: String, enum: ['Pending', 'Paid'], default: 'Pending' },
+    active: { type: Boolean, default: false },
+    paymentStatus: { type: String, enum: ['Pending', 'Paid', 'Rejected'], default: 'Pending' },
+    transactionId: String,
+    paymentScreenshot: String,
+    rejectionNote: { type: String },
+
 });
 
 module.exports = mongoose.model('Subscription', subscriptionSchema);
