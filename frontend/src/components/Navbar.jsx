@@ -6,7 +6,14 @@ import TopBanner from "./TopBanner";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const menuItems = ["Home", "Developer", "Plans", "Services", "Contact"];
+  const menuItems = [
+    { label: "Home", path: "/" },
+    { label: "Developer", path: "/developer" },
+    { label: "Plans", path: "/plans" },
+    { label: "Services", path: "/services" },
+    { label: "Contact", path: "/contact" },
+  ];
+
   const [activeItem, setActiveItem] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -36,24 +43,25 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-5 text-sm lg:text-base font-medium text-slate-900">
               {menuItems.map((item) => (
-                <div
-                  key={item}
-                  onClick={() => handleItemClick(item)}
-                  className="relative group cursor-pointer"
-                >
-                  <span
-                    className={`flex items-center gap-1 transition-all duration-300
-                                        ${
-                                          activeItem === item
-                                            ? "text-blue-600"
-                                            : ""
-                                        }
-                                        group-hover:text-blue-600`}
+                <Link to={item.path}>
+                  <div
+                    key={item}
+                    onClick={() => handleItemClick(item.label)}
+                    className="relative group cursor-pointer"
                   >
-                    {item}
-                    <RiArrowDownSLine className="w-6 h-6 transform transition-transform duration-300 group-hover:rotate-x-180" />
-                  </span>
-                </div>
+                    <span
+                      className={`flex items-center gap-1 transition-all duration-300
+                                        ${activeItem === item.label
+                          ? "text-blue-600"
+                          : ""
+                        }
+                                        group-hover:text-blue-600`}
+                    >
+                      {item.label}
+                      <RiArrowDownSLine className="w-6 h-6 transform transition-transform duration-300 group-hover:rotate-x-180" />
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
 
@@ -97,20 +105,21 @@ const Navbar = () => {
           {isMobileMenuOpen && (
             <div className="md:hidden mt-2 space-y-2 pb-4">
               {menuItems.map((item) => (
-                <div
-                  key={item}
-                  onClick={() => handleItemClick(item)}
-                  className={`cursor-pointer group px-3 py-2 rounded transition-all duration-300
-                                    ${
-                                      activeItem === item
-                                        ? "text-blue-600"
-                                        : "text-slate-900"
-                                    }
+                <Link to={item.path}>
+                  <div
+                    key={item.label}
+                    onClick={() => handleItemClick(item.label)}
+                    className={`cursor-pointer group px-3 py-2 rounded transition-all duration-300
+                                    ${activeItem === item.label
+                        ? "text-blue-600"
+                        : "text-slate-900"
+                      }
                                     hover:text-blue-600 flex items-center justify-between`}
-                >
-                  {item}
-                  <RiArrowDownSLine className="w-6 h-6 transform transition-transform  duration-300 group-hover:rotate-x-180" />
-                </div>
+                  >
+                    {item.label}
+                    <RiArrowDownSLine className="w-6 h-6 transform transition-transform  duration-300 group-hover:rotate-x-180" />
+                  </div>
+                </Link>
               ))}
               {/* Login Button */}
 
