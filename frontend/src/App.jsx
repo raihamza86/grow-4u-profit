@@ -1,3 +1,4 @@
+import './App.css';
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -8,11 +9,14 @@ import Services from "./pages/Services";
 import Contact from "./pages/Plans";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import './App.css'
 import Task from "./components/dashboard/Task";
 import Dashboard from "./components/dashboard/Dashboard";
 import ReferralLinks from "./pages/ReferralLinks";
-
+import DepositHestory from "./pages/DepositHestory";
+import ProfileSetting from "./pages/ProfileSetting";
+import DashboardNavbar from "./components/DashboardNavbar";
+import WithdrawHistory from "./components/WithdrawHistory";
+import { FaWhatsapp } from "react-icons/fa";
 
 const MainLayout = () => {
   return (
@@ -20,9 +24,20 @@ const MainLayout = () => {
       <Navbar />
       <Outlet />
       <Footer />
+
+      {/* Fixed WhatsApp Icon */}
+      <a
+  href="https://wa.me/923001234567" // Replace with your number
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 hover:bg-green-600 transition animate-bounce-custom"
+>
+  <FaWhatsapp className="text-3xl" />
+</a>
+
     </>
-  )
-}
+  );
+};
 
 const router = createBrowserRouter([
   {
@@ -38,15 +53,19 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/referrallink", element: <ReferralLinks /> },
-      { path: "*", element: <div>Page not found.</div> },
+      { path: "/deposithestory", element: <DepositHestory /> },
+      { path: "/withdrawhistory", element: <WithdrawHistory /> },
+      { path: "/profilesetting", element: <ProfileSetting /> },
+      { path: "/dashboardnavbar", element: <DashboardNavbar /> },
+      { path: "*", element: <div className="text-center py-20 text-2xl font-bold">Page not found.</div> },
     ]
   }
-])
+]);
 
 function App() {
   return (
-    <RouterProvider router={router}></RouterProvider>
-  )
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;
