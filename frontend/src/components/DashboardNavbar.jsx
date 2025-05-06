@@ -18,14 +18,14 @@ const DashboardNavbar = () => {
     { icon: <FaGem />, label: "Plans", path: "/plans" },
     { icon: <FaMoneyCheckAlt />, label: "Deposit", path: "/plans" },
     { icon: <MdHistory />, label: "Deposit History", path: "/deposithestory" },
-    { icon: <FaTasks />, label: "Task", path: "/login" },
-    { icon: <FaTasks />, label: "Task History", path: "/login" },
+    { icon: <FaTasks />, label: "Task", path: "/task" },
+    { icon: <FaTasks />, label: "Task History", path: "/taskhistory" },
     { icon: <FaWallet />, label: "Withdraw", path: "/dashboard" },
     { icon: <MdHistory />, label: "Withdraw History", path: "/withdrawhistory" },
     { icon: <HiOutlineUserGroup />, label: "Referral", path: "/referrallink" },
-    { icon: <FaKey />, label: "Referral Bounse", path: "/" },
+    { icon: <FaKey />, label: "Referral Bounse", path: "/referralbounse" },
     { icon: <IoSettingsOutline />, label: "Settings", path: "/profilesetting" },
-    { icon: <IoSettingsOutline />, label: "Change Password", path: "/" },
+    { icon: <IoSettingsOutline />, label: "Change Password", path: "/changepassword" },
     { icon: <IoSettingsOutline />, label: "Logout", path: "/login" },
   ];
 

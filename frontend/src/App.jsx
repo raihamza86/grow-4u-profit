@@ -17,6 +17,9 @@ import ProfileSetting from "./pages/ProfileSetting";
 import DashboardNavbar from "./components/DashboardNavbar";
 import WithdrawHistory from "./components/WithdrawHistory";
 import { FaWhatsapp } from "react-icons/fa";
+import TaskHistory from './components/TaskHistory';
+import ReferralBounse from './components/ReferralBounse';
+import ChangePassword from './components/ChangePassword';
 
 const MainLayout = () => {
   return (
@@ -57,6 +60,9 @@ const router = createBrowserRouter([
       { path: "/withdrawhistory", element: <WithdrawHistory /> },
       { path: "/profilesetting", element: <ProfileSetting /> },
       { path: "/dashboardnavbar", element: <DashboardNavbar /> },
+      { path: "/taskhistory", element: <TaskHistory /> },
+      { path: "/referralbounse", element: <ReferralBounse /> },
+      { path: "/changepassword", element: <ChangePassword /> },
       { path: "*", element: <div className="text-center py-20 text-2xl font-bold">Page not found.</div> },
     ]
   }

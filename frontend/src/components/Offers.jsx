@@ -58,7 +58,7 @@ const Offers = () => {
           className="bg-[linear-gradient(45deg,_#4CAF50,_#CDDC39,_#ffffff,_#ffffff,_#ffffff,_#ffffff,_#5A71F1,_#439EFF)] p-10 rounded-xl text-black flex flex-col gap-6"
         >
           <div className="flex justify-between lg:flex-row flex-col items-start gap-10 ">
-            <div className="bg-[#CDDC39] rounded-2xl py-[34px] px-[15px] w-full items-center flex items-center flex-col">
+            <div className="bg-[#CDDC39] rounded-2xl py-[34px] px-[15px] w-full  flex items-center flex-col">
               <p className=" font-bold text-[30px] sm:text-[50px]">{card.price}</p>
               <p className="text-sm mt-1">Plan Amount</p>
             </div>
@@ -100,7 +100,7 @@ const Offers = () => {
           </div>
 
           <div className="mt-6">
-            <button className="text-white px-6 py-4 w-[200px] rounded-lg flex items-center justify-around font-semibold transition hover:opacity-90 bg-[linear-gradient(45deg,_#4CAF50,_#4CAF50,_#4CAF50,_#009688,_#4CAF50,_#4CAF50,_#5A71F1,_#439EFF)]">
+            <button className="text-white cursor-pointer px-6 py-4 w-[200px] rounded-lg flex items-center justify-around font-semibold transition hover:opacity-90 bg-[linear-gradient(45deg,_#4CAF50,_#4CAF50,_#4CAF50,_#009688,_#4CAF50,_#4CAF50,_#5A71F1,_#439EFF)]">
               Purchase Now <GoArrowUpRight />
             </button>
           </div>

@@ -56,23 +56,23 @@ const DepositForm = () => {
         <table className="w-full table-auto bg-orange-500 text-white rounded-t-md text-sm md:text-base">
           <thead>
             <tr className="bg-[#FD7E14]">
-              <th className="px-4 py-2 text-left">Gateway | Transaction</th>
-              <th className="px-4 py-2 text-left">Initiated</th>
-              <th className="px-4 py-2 text-left">Amount</th>
-              <th className="px-4 py-2 text-left">Conversion</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Details</th>
+              <th className="px-4 py-2 text-left text-nowrap">Gateway | Transaction</th>
+              <th className="px-4 py-2 text-left text-nowrap">Initiated</th>
+              <th className="px-4 py-2 text-left text-nowrap">Amount</th>
+              <th className="px-4 py-2 text-left text-nowrap">Conversion</th>
+              <th className="px-4 py-2 text-left text-nowrap">Status</th>
+              <th className="px-4 py-2 text-left text-nowrap">Details</th>
             </tr>
           </thead>
           <tbody>
             {sampleData.map((item, index) => (
               <tr key={index} className="bg-[#212529] text-left">
-                <td className="px-4 py-2">{item.gateway}</td>
-                <td className="px-4 py-2">{item.initiated}</td>
-                <td className="px-4 py-2">{item.amount}</td>
-                <td className="px-4 py-2">{item.conversion}</td>
-                <td className="px-4 py-2">{item.status}</td>
-                <td className="px-4 py-2 underline cursor-pointer hover:text-orange-300">{item.details}</td>
+                <td className="px-4 py-2 text-nowrap">{item.gateway}</td>
+                <td className="px-4 py-2 text-nowrap">{item.initiated}</td>
+                <td className="px-4 py-2 text-nowrap">{item.amount}</td>
+                <td className="px-4 py-2 text-nowrap">{item.conversion}</td>
+                <td className="px-4 py-2 text-nowrap">{item.status}</td>
+                <td className="px-4 py-2 underline cursor-pointer hover:text-orange-300 text-nowrap">{item.details}</td>
               </tr>
             ))}
           </tbody>

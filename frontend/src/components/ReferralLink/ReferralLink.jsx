@@ -101,21 +101,21 @@ const ReferralLink = () => {
           <table className="w-full table-auto bg-orange-500 text-white rounded-t-md text-sm md:text-base">
             <thead>
               <tr className="bg-[#FD7E14]">
-                <th className="px-4 py-2 text-left">Full Name</th>
-                <th className="px-4 py-2 text-left">User Name</th>
-                <th className="px-4 py-2 text-left">Email</th>
-                <th className="px-4 py-2 text-left">Mobile</th>
-                <th className="px-4 py-2 text-left">Plan</th>
+                <th className="px-4 py-2 text-left text-nowrap">Full Name</th>
+                <th className="px-4 py-2 text-left text-nowrap">User Name</th>
+                <th className="px-4 py-2 text-left text-nowrap">Email</th>
+                <th className="px-4 py-2 text-left text-nowrap">Mobile</th>
+                <th className="px-4 py-2 text-left text-nowrap">Plan</th>
               </tr>
             </thead>
             <tbody>
               {sampleData.map((user, index) => (
                 <tr key={index} className="bg-[#212529] text-left">
-                  <td className="px-4 py-2">{user.fullName}</td>
-                  <td className="px-4 py-2">{user.userName}</td>
-                  <td className="px-4 py-2">{user.email}</td>
-                  <td className="px-4 py-2">{user.mobile}</td>
-                  <td className="px-4 py-2">{user.plan}</td>
+                  <td className="px-4 py-2 text-nowrap">{user.fullName}</td>
+                  <td className="px-4 py-2 text-nowrap">{user.userName}</td>
+                  <td className="px-4 py-2 text-nowrap">{user.email}</td>
+                  <td className="px-4 py-2 text-nowrap">{user.mobile}</td>
+                  <td className="px-4 py-2 text-nowrap">{user.plan}</td>
                 </tr>
               ))}
             </tbody>

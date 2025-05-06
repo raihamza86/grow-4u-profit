@@ -120,28 +120,28 @@ const GrowProfit = () => {
      {/* Fixed Bottom Navigation */}
 <div className="fixed bottom-0 left-0 right-0 bg-white grid grid-cols-5 text-center text-xs py-4 border-t border-gray-300 z-50">
   <Link to="/dashboard" className="flex flex-col items-center group cursor-pointer">
-    <FaHome className="text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
-    <div className="text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Home</div>
+    <FaHome className="text-3xl md:text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
+    <div className="md:text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Home</div>
   </Link>
 
   <Link to="/plans" className="flex flex-col items-center group cursor-pointer">
-    <MdProductionQuantityLimits className="text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
-    <div className="text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Production</div>
+    <MdProductionQuantityLimits className="text-3xl md:text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
+    <div className="md:text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Production</div>
   </Link>
 
   <div className="flex flex-col items-center group cursor-pointer">
-    <LuChartColumnIncreasing className="text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
-    <div className="text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Finance</div>
+    <LuChartColumnIncreasing className="text-3xl md:text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
+    <div className="md:text-2xl text-[#C7C7C7] group-hover:text-[#ffa802]">Finance</div>
   </div>
 
   <Link to="/referrallink" className="flex flex-col items-center group cursor-pointer">
-    <RiTeamFill className="text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
-    <div className="text-2xl text-[#C7C7C7] group-hover:text-[#969086]">Team</div>
+    <RiTeamFill className="text-3xl md:text-5xl text-[#C7C7C7] group-hover:text-[#ffa802]" />
+    <div className="md:text-2xl text-[#C7C7C7] group-hover:text-[#969086]">Team</div>
   </Link>
 
   <Link to="/" className="flex flex-col items-center group cursor-pointer text-[#FFA802] hover:text-[#C7C7C7]">
-    <FaUser className="text-5xl" />
-    <div className="text-2xl">Mine</div>
+    <FaUser className="text-3xl md:text-5xl" />
+    <div className="md:text-2xl">Mine</div>
   </Link>
 </div>
 
