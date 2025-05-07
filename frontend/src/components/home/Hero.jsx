@@ -42,17 +42,18 @@ const Hero = () => {
                     isHovered ? "-translate-y-10 opacity-0" : "translate-y-0 opacity-100"
                   }`}
                 >
-                  REGISTER NOW
+                  LOGIN
                 </span>
                 <span
                   className={`absolute transition-all duration-300 ${
                     isHovered ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                   }`}
                 >
-                  RAO SAHAB
+                  LOGIN
                 </span>
               </div>
-                  <span>              <MdOutlineArrowOutward className="ml-10" /></span>
+                  <span>             
+                     <MdOutlineArrowOutward className="ml-10" /></span>
             </button>
 
             <button className="text-lg lg:w-60 w-full px-8 py-4 gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center">
