@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
+import BackButton from './BackButton';
 
 // Mock data
 const commissionData = [
@@ -36,7 +37,9 @@ const ReferralBonus = () => {
       <h1 className="text-2xl font-bold text-white mb-16 text-center">Commissions</h1>
 
       {/* Filter Section */}
+      <BackButton/>
       <div className="bg-[#212529] rounded-lg shadow p-4 mb-6">
+      
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
           <div>
             <label className="block text-xl font-medium text-[#6478A5] mb-1">TRX/Username</label>

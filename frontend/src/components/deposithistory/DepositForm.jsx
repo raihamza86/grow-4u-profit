@@ -1,4 +1,5 @@
 import React from 'react';
+import BackButton from '../BackButton';
 
 const DepositForm = () => {
   const sampleData = [
@@ -47,10 +48,7 @@ const DepositForm = () => {
   return (
     <div className=" bg-gradient-to-b from-yellow-400 via-orange-500 to-[#F54635] p-4 md:p-8 text-white">
     <div className="mx-auto max-w-7xl">
-      {/* Back Button */}
-      <div className="text-green-500 text-2xl hover:text-blue-500 font-bold mb-8 cursor-pointer">
-        Back Now
-      </div>
+      <BackButton/>
       {/* Data Table */}
       <div className="overflow-x-auto">
         <table className="w-full table-auto bg-orange-500 text-white rounded-t-md text-sm md:text-base">

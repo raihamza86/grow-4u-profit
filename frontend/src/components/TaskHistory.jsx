@@ -1,4 +1,5 @@
 import React from 'react';
+import BackButton from './BackButton';
 
 const sampleData = [
   { date: '2025-05-01', totalclick: 120, totalearn: '$15.00' },
@@ -11,6 +12,7 @@ const sampleData = [
 const TaskHistory = () => {
   return (
     <div className=" bg-gradient-to-b from-yellow-400 via-orange-500 to-[#F54635] p-4 md:p-8 text-white">
+      <BackButton/>
       <div className="overflow-x-auto">
         <table className="w-full table-auto bg-orange-500 text-white rounded-t-md text-sm md:text-base">
           <thead>

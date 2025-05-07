@@ -2,6 +2,7 @@ import React from "react";
 import { TbClipboardCopy } from "react-icons/tb";
 import { IoIosMailOpen } from "react-icons/io";
 import { FaUserPlus, FaGift } from "react-icons/fa6";
+import BackButton from "../BackButton";
 
 const ReferralLink = () => {
   const referralLink = "https://grow-4u-profit.com?reference=fakhar";
@@ -53,9 +54,7 @@ const ReferralLink = () => {
     <div className="min-h-screen bg-gradient-to-b from-yellow-400 via-orange-500 to-[#F54635] p-4 md:p-8 text-white">
       <div className="mx-auto max-w-7xl">
         {/* Back Button */}
-        <div className="text-green-500 text-2xl hover:text-blue-500 font-bold mb-8 cursor-pointer">
-          Back Now
-        </div>
+        <BackButton/>
 
         {/* Icon Menu */}
         <div className="flex flex-col md:flex-row justify-around items-center bg-[#212529] rounded-lg p-4 mb-6 space-y-4 md:space-y-0 md:space-x-6">

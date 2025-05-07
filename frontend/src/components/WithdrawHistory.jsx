@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import BackButton from './BackButton';
 
 const sampleData = [
   {
@@ -39,6 +40,7 @@ const WithdrawHistory = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-400 to-orange-500 p-4 md:p-6">
+      <BackButton/>
       {/* Header */}
       <div className="flex items-center mb-6">
         <h1 className="text-2xl font-bold text-white">Withdraw History</h1>

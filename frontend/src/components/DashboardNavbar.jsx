@@ -30,7 +30,7 @@ const DashboardNavbar = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full sm:w-64 bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
+    <div className="min-h-screen translate-x-0 w-full sm:w-64 transition duration-400 delay-100 ease-in-out bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
       {/* User Info Card */}
       <div className="bg-gradient-to-br from-cyan-400 via-yellow-300 to-orange-400 rounded-xl p-5 text-black shadow-md mb-6">
         <img

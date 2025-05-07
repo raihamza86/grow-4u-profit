@@ -1,4 +1,5 @@
 import React from 'react';
+import BackButton from '../BackButton';
 
 const Task = () => {
   const tags = [
@@ -23,7 +24,13 @@ const Task = () => {
           <p className="text-xl mt-3 text-white font-semibold">
             Complete a task to make money.
           </p>
+          <div>
+          <BackButton/>
+          <link rel="stylesheet" href="/dashboard" />
+          </div>
+
         </div>
+        
         <div>
           <img src="/public/dollar-car.png" alt="Dollar illustration" className="w-[120px]" />
         </div>

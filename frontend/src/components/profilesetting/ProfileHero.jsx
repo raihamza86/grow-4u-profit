@@ -1,4 +1,5 @@
 import React from 'react'
+import BackButton from '../BackButton';
 
 const ProfileHero = () => {
   return (
@@ -11,7 +12,9 @@ const ProfileHero = () => {
         `}
       </style>
 
-      <div className="hero-gradient flex items-center justify-center px-6 md:px-16 py-16 text-white">
+      <div className="hero-gradient flex flex-col items-center justify-center px-6 md:px-16 py-16 text-white">
+      <span className="w-full"><BackButton/></span>
+        
         <div className="text-center">
           <h1 className="text-xl font-semibold">
           Profile Setting

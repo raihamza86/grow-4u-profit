@@ -20,6 +20,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import TaskHistory from './components/TaskHistory';
 import ReferralBounse from './components/ReferralBounse';
 import ChangePassword from './components/ChangePassword';
+import BackButton from './components/BackButton';
 
 const MainLayout = () => {
   return (
@@ -48,13 +49,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/developer", element: <Developer /> },
-      { path: "/plans", element: <Plans /> },
       { path: "/services", element: <Services /> },
       { path: "/contact", element: <Contact /> },
       { path: "/dashboard", element: <Dashboard /> },
-      { path: "/task", element: <Task /> },
+      { path: "/dashboard", element: <BackButton/> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/plans", element: <Plans /> },
+      { path: "/task", element: <Task /> },
       { path: "/referrallink", element: <ReferralLinks /> },
       { path: "/deposithestory", element: <DepositHestory /> },
       { path: "/withdrawhistory", element: <WithdrawHistory /> },

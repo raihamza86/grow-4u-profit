@@ -1,4 +1,5 @@
 import React from 'react';
+import BackButton from '../BackButton';
 
 const Card = ({ title, price, validity, dailyTask, taskRate, dailyEarning, totalEarning, withdrawLimit, referrerBonus }) => {
     return (
@@ -278,7 +279,7 @@ const Deals = () => {
                
             <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16">
             <div className='mx-auto bg-body bg-[#FEB30C]  text-2xl font-bold text-green-500 hover:text-blue-500 transition pt-3'>
-                    <a href="/">Back Now</a>
+                    <BackButton  />
                 </div>
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                     {plans.map((plan, index) => (
