@@ -54,7 +54,7 @@ const FirstDeposit = ({ price }) => {
   };
 
   return (
-    <div className="w-full fixed top-0 min-h-screen -left-5 z-10 flex justify-center items-start p-4 sm:p-6">
+    <div className="w-full fixed top-0 min-h-screen bg-black/50  -left-0 z-10 flex justify-center items-start p-4 sm:p-6">
       {visibi && (
         <div className="w-full max-w-xs sm:max-w-lg bg-[#292211] rounded-xl shadow-xl p-5">
           {/* Header */}

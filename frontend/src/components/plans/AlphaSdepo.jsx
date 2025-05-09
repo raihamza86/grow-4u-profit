@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import BackButton from "../BackButton";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AlphaSdepo = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { price, source } = location.state || {};
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const MovetoHome = () => {
+    setShowSuccessMessage(true);
+
+    // Optional: Redirect to home after 2.5 seconds
+    setTimeout(() => {
+      navigate("/");
+    }, 2500);
+  };
 
   return (
     <>
-      <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16">
-        <div className="mx-auto bg-body bg-[#FEB30C] text-2xl font-bold text-green-500 hover:text-blue-500 transition pt-3">
+      <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16 min-h-screen relative">
+        <div className="mx-auto text-2xl font-bold text-green-500 hover:text-blue-500 transition pt-3">
           <BackButton />
         </div>
+
+        {/* ✅ Success Message */}
+        {showSuccessMessage && (
+          <div className="absolute inset-0 top-0 right-0 flex items-center justify-center bg-black/80 z-50">
+            <div className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white text-3xl font-bold px-10 py-6 rounded-xl shadow-lg animate-pulse">
+              ✅ Payment Successful!
+            </div>
+          </div>
+        )}
 
         <div className="flex flex-col items-center">
           <div className="max-w-2xl rounded-sm bg-black text-gray-400 px-5 py-2 flex flex-col gap-10">
@@ -25,7 +45,7 @@ const AlphaSdepo = () => {
                 <span className="text-green-400">{price} Pkr</span>, Please pay{" "}
                 <span className="text-green-400">{price} Pkr</span> RS for successful payment
               </h1>
-              <h4 className="text-md text-lg text-white font-semibold mt-5">
+              <h4 className="text-lg text-white font-semibold mt-5">
                 Please follow the instruction below
               </h4>
             </div>
@@ -64,7 +84,10 @@ const AlphaSdepo = () => {
               <p className="text-orange-400 text-sm mb-10">
                 Supported mimes: jpg, jpeg, png, pdf, doc, docx
               </p>
-              <button className="py-2 px-5 mb-10 font-semibold bg-gradient-to-br from-[#e61942] to-[#af5d6d] rounded-md text-white hover:brightness-110 transition">
+              <button
+                className="py-2 px-5 cursor-pointer mb-10 font-semibold bg-gradient-to-br from-[#e61942] to-[#af5d6d] rounded-md text-white hover:brightness-110 transition"
+                onClick={MovetoHome}
+              >
                 Pay Now
               </button>
             </div>
