@@ -11,9 +11,10 @@ const ImgArray = [
   { id: 7, img: "/Home/rotate7.webp" },
 ];
 
+
 const Brand = () => {
   return (
-    <div className="w-full bg-blue-100 py-10">
+    <div className="w-full bg-blue-100 py-10 overflow-hidden">
       {/* Header */}
       <div className="text-center mb-8 px-4">
         <h1 className="text-lg font-bold">
@@ -22,24 +23,37 @@ const Brand = () => {
         </h1>
       </div>
 
-      {/* Logo Slider */}
-      <div className="overflow-x-auto whitespace-nowrap px-4  scrollbar-hide mb-20 lg:mb-100">
-        <div className="inline-flex gap-6  ">
+      {/* Responsive Logo Grid on small screens, Carousel on md+ */}
+      <div className="w-full px-4">
+        {/* Grid (visible on small screens) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:hidden">
           {ImgArray.map((item) => (
-            <marquee behavior="" direction="left">
             <div
               key={item.id}
-              className="w-100 h-200 sm:w-36 sm:h-24 md:w-40 md:h-28 bg-white shadow-md rounded-lg flex items-center justify-center p-2"
+              className="bg-white shadow-md rounded-lg flex items-center justify-center p-2"
             >
               <img src={item.img} alt="Brand Logo" className="w-full h-full object-contain" />
             </div>
-            </marquee>
           ))}
+        </div>
+
+        {/* Carousel (visible on medium and larger screens) */}
+        <div className="hidden md:block overflow-hidden w-full mt-4">
+          <div className="flex w-max gap-6 animate-scroll">
+            {[...ImgArray, ...ImgArray].map((item, index) => (
+              <div
+                key={index}
+                className="w-36 h-24 md:w-40 md:h-28 bg-white shadow-md rounded-lg flex items-center justify-center p-2"
+              >
+                <img src={item.img} alt="Brand Logo" className="w-full h-full object-contain" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Stats and Image Section */}
-      <div className="flex flex-col md:flex-row gap-6 px-4">
+      {/* Stats and Background Image */}
+      <div className="flex flex-col md:flex-row gap-6 px-4 mt-10">
         {/* Stats Grid */}
         <div className="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
@@ -62,24 +76,23 @@ const Brand = () => {
           ))}
         </div>
 
-{/* Right Background Image */}
-<div
-  className="w-full relative md:w-[30%] h-[100vh] rounded-lg shadow-md overflow-hidden"
-  style={{
-    backgroundImage: "url('/Home/Brandbimg.webp')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-blue-800 via-blue-500/40 to-transparent"></div>
+        {/* Right Background Image */}
+        <div
+          className="w-full relative md:w-[30%] h-[60vh] md:h-[100vh] rounded-lg shadow-md overflow-hidden"
+          style={{
+            backgroundImage: "url('/Home/Brandbimg.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-800 via-blue-500/40 to-transparent"></div>
 
-  {/* Text Content */}
-  <h1 className="text-white absolute bottom-15 text-3xl p-1 max-w-md font-bold text-center z-10">
-    12000 Employees in 30 Countries of Europe
-  </h1>
-</div>
-
+          {/* Text */}
+          <h1 className="text-white absolute bottom-10 left-1/2 -translate-x-1/2 text-2xl p-4 max-w-xs font-bold text-center z-10">
+            12000 Employees in 30 Countries of Europe
+          </h1>
+        </div>
       </div>
     </div>
   );

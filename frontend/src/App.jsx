@@ -21,6 +21,8 @@ import TaskHistory from './components/TaskHistory';
 import ReferralBounse from './components/ReferralBounse';
 import ChangePassword from './components/ChangePassword';
 import BackButton from './components/BackButton';
+import FirstDeposit from './components/plans/FirstDeposit';
+import SecondDepPg from './components/plans/SecondDepPg';
 
 const MainLayout = () => {
   return (
@@ -56,6 +58,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/plans", element: <Plans /> },
+      {path:"/firstDeposit", element:<FirstDeposit/>},
+      {path:"/SecondDepPg",element:<SecondDepPg/>},
       { path: "/task", element: <Task /> },
       { path: "/referrallink", element: <ReferralLinks /> },
       { path: "/deposithestory", element: <DepositHestory /> },

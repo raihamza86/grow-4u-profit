@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BackButton from '../BackButton';
+import FirstDeposit from './FirstDeposit';
 
 const Card = ({ title, price, validity, dailyTask, taskRate, dailyEarning, totalEarning, withdrawLimit, referrerBonus }) => {
+    const [showCardD, setshowCardD] = useState(false)
+    const showDepositCard=()=>{
+        setshowCardD(true);
+    }
+
+    // console.log("Deals data..", price);
+    
+    
+    
+    
     return (
         <div className="bg-[#212529] shadow-lg overflow-hidden w-full max-w-sm">
+
+
+            {/* when i Click on the buy now button it show me the FristDeposit Page Card and also sent the price of the card using props  */}
+            {showCardD &&
+            <div className="z-50">
+                <FirstDeposit price={price}/>
+            </div>
+            }
+            
             {/* Title Section with Gradient Background */}
             <div className="bg-gradient-to-r from-[#F4B9C5] to-[#E8657F] p-6 text-center">
                 <h3 className="text-2xl font-bold text-white">{title}</h3>
@@ -57,7 +77,9 @@ const Card = ({ title, price, validity, dailyTask, taskRate, dailyEarning, total
             </div>
 
             {/* Buy Now Button */}
-            <button className="block mx-auto max-w-[90%] bg-gradient-to-b from-[#EC7F95] to-[#E2395A] hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition mb-6 cursor-pointer">
+            <button className="block mx-auto max-w-[90%] bg-gradient-to-b from-[#EC7F95] to-[#E2395A] hover:opacity-90 text-white font-bold py-2 px-6 rounded-full transition mb-6 cursor-pointer"
+            onClick={showDepositCard}
+            >
                 Buy Now
             </button>
         </div>
@@ -65,6 +87,8 @@ const Card = ({ title, price, validity, dailyTask, taskRate, dailyEarning, total
 };
 
 const Deals = () => {
+
+
     const plans = [
         // Existing Plans
         {
@@ -276,6 +300,7 @@ const Deals = () => {
 
     return (
         <>
+
                
             <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16">
             <div className='mx-auto bg-body bg-[#FEB30C]  text-2xl font-bold text-green-500 hover:text-blue-500 transition pt-3'>
@@ -287,6 +312,7 @@ const Deals = () => {
                     ))}
                 </div>
             </div>
+
         </>
     );
 };
