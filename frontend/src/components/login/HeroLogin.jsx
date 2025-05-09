@@ -11,10 +11,10 @@ const HeroLogin = () => {
             />
             <div className="absolute inset-0  bg-black/20 flex items-center justify-center  px-4 text-center">
                 <div className="text-white flex flex-col items-center max-w-4xl space-y-4 justify-center">
-                    <h1 className="text-5xl font-bold leading-tight uppercase">
+                    <h1 className="text-3xl md:text-5xl font-bold leading-tight uppercase">
                         Login
                     </h1>
-                    <h2 className="text-3xl font-medium uppercase  w-[90%]">
+                    <h2 className=" md:text-3xl font-medium uppercase  w-[90%]">
                         Join us to manage your investments and create superior returns together
                     </h2>
                 </div>

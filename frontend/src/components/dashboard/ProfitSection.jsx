@@ -29,8 +29,8 @@ const ProfitSection = () => {
   };
 
   return (
-    <div className="w-full text-white">
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 w-full">
+    <div className="w-full max-w-5xl mx-auto text-white">
+      <div className="grid grid-cols-3 w-full">
         {images.map((item, index) => (
           <div
             key={index}
@@ -41,10 +41,10 @@ const ProfitSection = () => {
               <img
                 src={item.src}
                 alt={`item-${index}`}
-                className="w-[70px] h-[70px] object-cover rounded-full"
+                className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] object-cover rounded-full"
               />
             </div>
-            <p className="mt-2 text-white font-semibold text-center">
+            <p className="mt-2 text-white text-[15px] md:text-sx font-semibold text-center text-nowrap">
               {item.label}
             </p>
           </div>

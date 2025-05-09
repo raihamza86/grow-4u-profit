@@ -1,7 +1,7 @@
 import { FaCheckCircle } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { MdArrowOutward } from "react-icons/md";
-
+import { Link } from "react-router-dom";
 
 // Plan data
 const plans = [
@@ -29,7 +29,7 @@ const gradients = [
   'from-[#cfe2ff] via-white to-indigo-500',
 ];
 
-// 💡 Color cycling box
+// ColorCyclingBox Component
 const ColorCyclingBox = ({ amount }) => {
   const styles = [
     { bg: '#23BABF', text: '#FFFFFF' },
@@ -52,7 +52,7 @@ const ColorCyclingBox = ({ amount }) => {
 
   return (
     <div
-      className="py-10 px-8 rounded-lg lg:text-5xl md:text-4xl text-3xl font-bold text-center text-nowrap transition-all duration-1000"
+      className="py-10 px-8 rounded-lg lg:text-5xl md:text-4xl text-3xl font-bold text-center whitespace-nowrap transition-all duration-1000"
       style={{ backgroundColor: currentStyle.bg, color: currentStyle.text }}
     >
       Rs {amount}
@@ -61,7 +61,7 @@ const ColorCyclingBox = ({ amount }) => {
   );
 };
 
-// 💡 Main component
+// Main Component
 export default function PricingSection() {
   const [gradientIndex, setGradientIndex] = useState(0);
 
@@ -111,7 +111,7 @@ export default function PricingSection() {
                   <p className="flex items-center"><FaCheckCircle className="mr-2" /> Daily Profit</p>
                   <p className="ml-6"><sup>Pkr.</sup> <strong>{plan.profit} Every Day</strong></p>
                   <p className="flex items-center"><FaCheckCircle className="mr-2" /> Plan Valid - 90 Days</p>
-                  <p className="flex items-center"><FaCheckCircle className="mr-2" /> Daily Task - 1TASK</p>
+                  <p className="flex items-center"><FaCheckCircle className="mr-2" /> Daily Task - 1 TASK</p>
                 </div>
                 <div className="flex flex-col gap-3">
                   <p className="flex items-center"><FaCheckCircle className="mr-2" /> Refer Bonus Level 1 - 12%</p>
@@ -120,13 +120,23 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <button
-  className="mt-6 md:w-[40%] p-5 rounded-full font-semibold text-[#020842] shadow 
-    bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 
-    animate-pulse cursor-pointer text-lg md:text-xl border border-white flex items-center justify-center gap-2"
->
-  PURCHASE NOW <span><MdArrowOutward /></span>
-</button>
+              {/* PURCHASE NOW Button */}
+              <div className="flex justify-center md:justify-start">
+                <Link
+                  to="/login"
+                  className="group relative mt-6 w-[70%] md:w-[40%] p-5 rounded-full font-semibold text-[#020842] shadow 
+      bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 
+      animate-pulse cursor-pointer text-lg border border-white flex items-center justify-center gap-2"
+                >
+                  <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black transition duration-300 group-hover:text-white">
+                    <MdArrowOutward />
+                  </div>
+                  <span className="transition-all duration-300 group-hover:-translate-y-0.5">
+                    PURCHASE NOW
+                  </span>
+                </Link>
+              </div>
+
             </div>
           ))}
         </div>

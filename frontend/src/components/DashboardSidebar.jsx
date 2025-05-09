@@ -1,18 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FaTachometerAlt,
-  FaGem,
-  FaMoneyCheckAlt,
-  FaTasks,
-  FaWallet,
-  FaKey,
-} from "react-icons/fa";
+import {FaTachometerAlt,FaGem,FaMoneyCheckAlt,FaTasks,FaWallet,FaKey,} from "react-icons/fa";
 import { MdHistory } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
 
-const DashboardNavbar = () => {
+const DashboardSidebar = () => {
   const menuItems = [
     { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard", active: true },
     { icon: <FaGem />, label: "Plans", path: "/plans" },
@@ -30,7 +23,7 @@ const DashboardNavbar = () => {
   ];
 
   return (
-    <div className="min-h-screen translate-x-0 w-full sm:w-64 transition duration-400 delay-100 ease-in-out bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
+    <div className="min-h-screen translate-x-0  md:w-64 transition duration-400 delay-100 ease-in-out bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
       {/* User Info Card */}
       <div className="bg-gradient-to-br from-cyan-400 via-yellow-300 to-orange-400 rounded-xl p-5 text-black shadow-md mb-6">
         <img
@@ -70,4 +63,4 @@ const DashboardNavbar = () => {
   );
 };
 
-export default DashboardNavbar;
+export default DashboardSidebar;
