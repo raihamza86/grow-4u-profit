@@ -107,14 +107,14 @@ const FirstDeposit = ({ price }) => {
                     className={`rounded-md p-3 w-[30%] flex justify-center items-center cursor-pointer transition-colors duration-300
                       ${
                         selectedImageIndex === i
-                          ? "border-2 border-yellow-300"
+                          ? "border-2 border-yellow-300 "
                           : "border-2 border-white"
                       }`}
                   >   
                     <img
                       src={imo.img}
                       alt={imo.value}
-                      className="w-20 h-auto object-contain"
+                      className="w-20 h-auto hover:scale-115 transition transform duration-300 object-contain"
                     />
                   </div>
                 ))}
