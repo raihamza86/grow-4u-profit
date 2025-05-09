@@ -10,10 +10,10 @@ const BackButton = ({ showDashNav  }) => {
 
   return (
     <div
-      className="text-green-500 text-2xl hover:text-blue-500 font-bold mb-8 cursor-pointer"
+      className="text-green-500 text-xl hover:text-blue-500 font-bold mt-5 cursor-pointer"
       onClick={() => {
-        showDashNav();  // cleanly show right navbar again (or reset state)
-        MovetoDashboard();      // then navigate
+        showDashNav();  
+        MovetoDashboard();      
       }}
     >
       Back Now

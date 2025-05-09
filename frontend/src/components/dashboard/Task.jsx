@@ -18,18 +18,17 @@ const Task = () => {
   return (
     <div className="bg-gradient-to-b from-[#ff512f] to-[#f09819]">
       {/* Header Section */}
-      <div className="flex items-center justify-between px-10 md:px-20 py-10">
+      <div className="flex items-center justify-between px-10 md:px-20 py-5">
         <div>
           <h2 className="text-2xl text-white font-bold">All Task</h2>
-          <p className="text-xl mt-3 text-white font-semibold">
+          <p className="text-sx mt-3 text-white font-semibold">
             Complete a task to make money.
           </p>
           <div>
           <BackButton/>
           <link rel="stylesheet" href="/dashboard" />
           </div>
-
-        </div>
+           </div>
         
         <div>
           <img src="/public/dollar-car.png" alt="Dollar illustration" className="w-[120px]" />
@@ -39,7 +38,7 @@ const Task = () => {
       {/* Section Two */}
       <div className="bg-[#212529]">
         <div className="flex flex-col md:flex-row  items-center text-white px-10 md:px-20 py-6 border-b border-[#ccc] gap-4 text-center md:text-left">
-          <p className='font-semibold text-lg'>
+          <p className='font-semibold text-sx'>
             آج جس وقت پر آپ نے ایڈ دیکھ کر اسکا منافع لیا ہوگا کل اسی وقت آُپکو دوبارہ ایڈ دیکھ کر اسکا منافع کمانا ہوگا
           </p>
          <p>
