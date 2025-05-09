@@ -15,6 +15,8 @@ const AlphaSdepo = () => {
     setTimeout(() => {
       navigate("/");
     }, 2500);
+
+
   };
 
   return (
@@ -51,7 +53,7 @@ const AlphaSdepo = () => {
             </div>
             <div className="flex flex-col items-center">
               <p className="text-center">
-                Hi Dear Members Please Send Money To Our {source || "Selected"} Account And Upload Screenshot.
+              Hi Dear Members Please Send Money Our {source} Account And Upload Screen Shot Your Deposit Approved Within Next 10 to 20 Minutes
               </p>
               <p className="mt-10">Thank You For Joining Us...</p>
             </div>
