@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import BackButton from './BackButton';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const sampleData = [
   {
@@ -30,6 +32,10 @@ const sampleData = [
 ];
 
 const WithdrawHistory = () => {
+  const location = useLocation();
+  const title = location.state?.title || "Default Title";
+  const accountNumber = location.state?.accountNumber || "TXN123456";
+  const price = location.state?.price || "0000";
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = sampleData.filter((item) =>
@@ -79,9 +85,9 @@ const WithdrawHistory = () => {
             {filteredData.length > 0 ? (
               filteredData.map((item, index) => (
                 <tr key={index} className="bg-[#212529] text-left">
-                  <td className="px-4 py-2 text-nowrap">{item.gateway}</td>
+                  <td className="px-4 py-2 text-nowrap">{title} | {accountNumber}</td>
                   <td className="px-4 py-2 text-nowrap">{item.initiated}</td>
-                  <td className="px-4 py-2 text-nowrap">{item.amount}</td>
+                  <td className="px-4 py-2 text-nowrap">{price}</td>
                   <td className="px-4 py-2 text-nowrap">{item.conversion}</td>
                   <td className="px-4 py-2 text-nowrap">{item.status}</td>
                   <td className="px-4 py-2 underline cursor-pointer hover:text-orange-300 text-nowrap">{item.action}</td>

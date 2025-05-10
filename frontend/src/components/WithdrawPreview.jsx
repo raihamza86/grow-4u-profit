@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BackButton from './BackButton';
 
 const WithdrawPreview = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const title = location.state?.title || "Default Title";
+  const price = location.state?.price || "0000";
+
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [accountNumber, setAccountNumber] = useState('');
   const [accountName, setAccountName] = useState('');
@@ -13,12 +20,13 @@ const WithdrawPreview = () => {
 
     setTimeout(() => {
       setShowSuccessMessage(false);
-      // Add navigation logic here if needed
+      navigate("/withdrawhistory", { state: { title, accountNumber, price } });
     }, 3000);
   };
 
   return (
     <div className="bg-[#FEB30C] py-12 px-4 sm:px-8 lg:px-16 min-h-screen relative">
+      <BackButton />
       {showSuccessMessage && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-50">
           <div className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white text-3xl font-bold px-10 py-6 rounded-xl shadow-lg animate-pulse">
@@ -30,13 +38,13 @@ const WithdrawPreview = () => {
       <div className="flex flex-col items-center">
         <div className="w-full max-w-2xl rounded-sm bg-black text-gray-400 px-5 py-6 flex flex-col gap-10 shadow-lg">
           <div>
-            <h1 className="text-white p-2 font-semibold">Withdraw Via EASYPAISA</h1>
+            <h1 className="text-white p-2 font-semibold">Withdraw Via {title}</h1>
             <hr />
           </div>
 
           <div className="flex flex-col items-center gap-3 text-sm sm:text-base">
             <p className="text-center">
-              Hi Dear Members, please send your EasyPaisa account number and account name. Your withdrawal will be approved within the next 10 to 20 minutes.
+              Hi Dear Members, please send your {title} account number and account name. Your withdrawal will be approved within the next 10 to 20 minutes.
             </p>
             <p className="text-center">
               (Sometimes, using the same account repeatedly may cause suspension. Please be careful.)
