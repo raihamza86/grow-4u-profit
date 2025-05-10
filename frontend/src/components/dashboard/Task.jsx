@@ -25,13 +25,13 @@ const Task = () => {
             Complete a task to make money.
           </p>
           <div>
-          <BackButton/>
-          <link rel="stylesheet" href="/dashboard" />
+            <BackButton />
+            <link rel="stylesheet" href="/dashboard" />
           </div>
-           </div>
-        
+        </div>
+
         <div>
-          <img src="/public/dollar-car.png" alt="Dollar illustration" className="w-[120px]" />
+          <img src="/dollar-car.png" alt="Dollar illustration" className="w-[120px]" />
         </div>
       </div>
 
@@ -41,15 +41,15 @@ const Task = () => {
           <p className='font-semibold text-sx'>
             آج جس وقت پر آپ نے ایڈ دیکھ کر اسکا منافع لیا ہوگا کل اسی وقت آُپکو دوبارہ ایڈ دیکھ کر اسکا منافع کمانا ہوگا
           </p>
-         <p>
+          <p>
             اگر ایڈ نہیں آیا تو کل جس وقت پر دیکھا تھا اس وقت کا انتظار کریں
-            </p>
+          </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-8 px-10 md:px-20 py-20">
           {tags.map((item, index) => (
             <div key={index} className="flex flex-col items-center ">
-              <img src="/public/tag.png" className="w-[90px] mb-2" alt={`Reward tag ${index + 1}`} />
+              <img src="/tag.png" className="w-[90px] mb-2" alt={`Reward tag ${index + 1}`} />
               <p className="text-white text-[15px] font-medium mb-1">Reward: {item.reward}</p>
               <p className="text-white text-[13px] font-medium mb-2">Duration: {item.duration}</p>
               <button className="text-white hover:bg-gray-600 border-2 border-white rounded-full px-4 py-1 text-sm transition duration-200 cursor-pointer">
