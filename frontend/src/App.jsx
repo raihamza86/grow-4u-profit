@@ -23,6 +23,10 @@ import ChangePassword from './components/ChangePassword';
 import BackButton from './components/BackButton';
 import FirstDeposit from './components/plans/FirstDeposit';
 import SecondDepPg from './components/plans/SecondDepPg';
+import WithdrawMoney from './components/WithdrawMoney';
+import WithdrawEasyPaisa from './components/WithdrawEasyPaisa';
+import WithdrawPreview from './components/WithdrawPreview';
+
 
 const MainLayout = () => {
   return (
@@ -64,6 +68,9 @@ const router = createBrowserRouter([
       { path: "/referrallink", element: <ReferralLinks /> },
       { path: "/deposithestory", element: <DepositHestory /> },
       { path: "/withdrawhistory", element: <WithdrawHistory /> },
+      { path: "/withdrawmoney", element: <WithdrawMoney /> },
+      { path: "/withdraweasypaisa", element: <WithdrawEasyPaisa /> },
+      { path: "/withdrawpreview", element: <WithdrawPreview /> },
       { path: "/profilesetting", element: <ProfileSetting /> },
       { path: "/dashboardsidebar", element: <DashboardSidebar /> },
       { path: "/taskhistory", element: <TaskHistory /> },
