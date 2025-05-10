@@ -43,9 +43,9 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-5 text-sm lg:text-base font-medium text-slate-900">
               {menuItems.map((item) => (
-                <Link to={item.path}>
+                <Link to={item.path} key={item.label}>
                   <div
-                    key={item}
+                    key={item.label}
                     onClick={() => handleItemClick(item.label)}
                     className="relative group cursor-pointer"
                   >

@@ -4,6 +4,7 @@ import {FaTachometerAlt,FaGem,FaMoneyCheckAlt,FaTasks,FaWallet,FaKey,} from "rea
 import { MdHistory } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
+import "./SidebarStyle.css";
 
 const DashboardSidebar = () => {
   const menuItems = [
@@ -23,12 +24,12 @@ const DashboardSidebar = () => {
   ];
 
   return (
-    <div className="min-h-screen translate-x-0  md:w-64 transition duration-400 delay-100 ease-in-out bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
+    <div className="h-full md:h-screen overflow-y-auto hide-scrollbar translate-x-0  md:w-64 transition duration-400 delay-100 ease-in-out bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-4">
       {/* User Info Card */}
       <div className="bg-gradient-to-br from-cyan-400 via-yellow-300 to-orange-400 rounded-xl p-5 text-black shadow-md mb-6">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2920/2920222.png"
-          alt="User Avatar"
+          src="/profit.png"
+          alt="profit"
           className="w-12 h-12 mb-2"
         />
         <p className="font-bold text-white">Username: fakhar</p>

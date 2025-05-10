@@ -65,7 +65,7 @@ const Dashboard = () => {
             </span>
           </div>
         </div>
-        <div className="w-full min-h-screen flex flex-col items-center px-8">
+        <div className="w-full min-h-screen flex flex-col items-center md:px-8 px-2">
         {/* Other Dashboard Sections */}
         <ProfileSection />
         <ProfitSection />
