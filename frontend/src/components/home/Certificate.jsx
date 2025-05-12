@@ -50,7 +50,7 @@ const Certificate = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="text-lg w-full sm:w-auto px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-2">
+            <button className="text-lg w-full cursor-pointer sm:w-auto px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-2">
               EXPLORE PLANS <MdOutlineArrowOutward />
             </button>
             <button className="flex items-center gap-2 justify-center text-blue-600 hover:underline">

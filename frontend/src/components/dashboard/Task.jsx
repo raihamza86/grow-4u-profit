@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // ✅ Ensure Link is imported
 import BackButton from '../BackButton';
 
 const Task = () => {
@@ -16,45 +17,50 @@ const Task = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-[#ff512f] to-[#f09819]">
+    <div className="bg-gradient-to-b from-[#ff512f] to-[#f09819] min-h-screen">
       {/* Header Section */}
-      <div className="flex items-center justify-between px-10 md:px-20 py-5">
-        <div>
-          <h2 className="text-2xl text-white font-bold">All Task</h2>
-          <p className="text-sx mt-3 text-white font-semibold">
+      <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-6">
+        <div className="text-center md:text-left">
+          <h2 className="text-3xl text-white font-bold">All Task</h2>
+          <p className="text-sm mt-2 text-white font-medium">
             Complete a task to make money.
           </p>
-          <div>
+          <div className="mt-4">
             <BackButton />
-            <link rel="stylesheet" href="/dashboard" />
           </div>
         </div>
 
-        <div>
-          <img src="/dollar-car.png" alt="Dollar illustration" className="w-[120px]" />
+        <div className="mt-6 md:mt-0">
+          <img src="/dollar-car.png" alt="Dollar illustration" className="w-[100px] md:w-[120px]" />
         </div>
       </div>
 
-      {/* Section Two */}
-      <div className="bg-[#212529]">
-        <div className="flex flex-col md:flex-row  items-center text-white px-10 md:px-20 py-6 border-b border-[#ccc] gap-4 text-center md:text-left">
-          <p className='font-semibold text-sx'>
-            آج جس وقت پر آپ نے ایڈ دیکھ کر اسکا منافع لیا ہوگا کل اسی وقت آُپکو دوبارہ ایڈ دیکھ کر اسکا منافع کمانا ہوگا
+      {/* Info Banner */}
+      <div className="bg-[#212529] text-white px-6 md:px-20 py-6 border-b border-[#ccc] text-center md:text-left">
+        <div className="flex flex-col md:flex-row gap-6 mb-6 text-center md:text-left">
+          <p className="font-semibold text-lg">
+            آج جس وقت پر آپ نے ایڈ دیکھ کر اس کا منافع لیا ہوگا، کل اسی وقت آپ کو دوبارہ ایڈ دیکھ کر اس کا منافع کمانا ہوگا۔
           </p>
-          <p>
-            اگر ایڈ نہیں آیا تو کل جس وقت پر دیکھا تھا اس وقت کا انتظار کریں
+          <p className="text-lg">
+            اگر ایڈ نہیں آیا تو کل جس وقت پر دیکھا تھا، اس وقت کا انتظار کریں۔
           </p>
         </div>
+      </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-8 px-10 md:px-20 py-20">
+      {/* Tasks Grid */}
+      <div className="bg-[#212529] px-6 md:px-20 py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {tags.map((item, index) => (
-            <div key={index} className="flex flex-col items-center ">
-              <img src="/tag.png" className="w-[90px] mb-2" alt={`Reward tag ${index + 1}`} />
-              <p className="text-white text-[15px] font-medium mb-1">Reward: {item.reward}</p>
-              <p className="text-white text-[13px] font-medium mb-2">Duration: {item.duration}</p>
-              <button className="text-white hover:bg-gray-600 border-2 border-white rounded-full px-4 py-1 text-sm transition duration-200 cursor-pointer">
+            <div key={index} className="flex flex-col items-center bg-[#2c2f33] p-4 rounded-xl shadow-md">
+              <img src="/tag.png" className="w-[80px] mb-3" alt={`Reward tag ${index + 1}`} />
+              <p className="text-white text-base font-medium mb-1 text-center">Reward: {item.reward}</p>
+              <p className="text-white text-sm mb-3">Duration: {item.duration}</p>
+              <Link
+                to="/taskprogress"
+                className="text-white border border-white px-4 py-1 rounded-full text-sm hover:bg-white hover:text-black transition"
+              >
                 View Ad
-              </button>
+              </Link>
             </div>
           ))}
         </div>

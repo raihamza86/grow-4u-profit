@@ -25,6 +25,9 @@ import DashboardLayout from './components/DashboardLayout';
 import WithdrawMoney from './components/WithdrawMoney';
 import WithdrawEasyPaisa from './components/WithdrawEasyPaisa';
 import WithdrawPreview from './components/WithdrawPreview';
+import TaskProgress from './components/TaskProgress';
+import TaskTwo from './components/TaskTwo';
+import PageNotFound from './components/PageNotFound';
 
 
 const MainLayout = () => {
@@ -76,11 +79,13 @@ const router = createBrowserRouter([
       { path: "/withdrawpreview", element: <WithdrawPreview /> },
       { path: "/profilesetting", element: <ProfileSetting /> },
       { path: "/taskhistory", element: <TaskHistory /> },
+      { path: "/taskprogress", element: <TaskProgress /> },
+      { path: "/tasktwo", element: <TaskTwo /> },
       { path: "/referralbounse", element: <ReferralBounse /> },
       { path: "/changepassword", element: <ChangePassword /> },
     ]
   },
-  { path: "*", element: <div className="text-center py-20 text-2xl font-bold">Page not found.</div> },
+  { path: "*", element: <PageNotFound/> },
 ]);
 
 function App() {

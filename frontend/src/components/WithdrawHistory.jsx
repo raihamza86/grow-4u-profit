@@ -34,33 +34,44 @@ const WithdrawHistory = () => {
 
   const filteredData = sampleData.filter((item) =>
     item.gateway.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.transaction?.toLowerCase().includes(searchTerm.toLowerCase())
+    item.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const getStatusDisplay = (status) => {
+    switch (status) {
+      case "Completed":
+        return { label: "Approved", bg: "bg-yellow-500 text-white" };
+      case "Pending":
+        return { label: "Pending", bg: "bg-green-500 text-white" };
+      case "Failed":
+        return { label: "Cancel", bg: "bg-red-500 text-white" };
+      default:
+        return { label: status, bg: "" };
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-400 to-orange-500 p-4 md:p-6">
-      <BackButton/>
+      <BackButton />
       {/* Header */}
       <div className="flex items-center mb-6">
         <h1 className="text-2xl font-bold text-white">Withdraw History</h1>
       </div>
 
       {/* Search Bar */}
-<div className="relative mb-6 w-full max-w-md">
-  <input
-    type="text"
-    placeholder="Search by transaction, gateway, status"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    className="w-full pl-10 pr-4 py-2 border-2 rounded-lg text-white bg-transparent placeholder-white
-               border-t-[#FFCAAD] border-r-[#FFCAAD] border-b-[#FFEBAC] border-l-[#FFEBAC] focus:outline-none"
-  />
-  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-    <FiSearch className="text-white" />
-  </div>
-</div>
-
+      <div className="relative mb-6 w-full max-w-md">
+        <input
+          type="text"
+          placeholder="Search by transaction, gateway, status"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-4 py-2 border-2 rounded-lg text-white bg-transparent placeholder-white
+            border-t-[#FFCAAD] border-r-[#FFCAAD] border-b-[#FFEBAC] border-l-[#FFEBAC] focus:outline-none"
+        />
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <FiSearch className="text-white" />
+        </div>
+      </div>
 
       {/* Data Table */}
       <div className="overflow-x-auto">
@@ -77,16 +88,25 @@ const WithdrawHistory = () => {
           </thead>
           <tbody>
             {filteredData.length > 0 ? (
-              filteredData.map((item, index) => (
-                <tr key={index} className="bg-[#212529] text-left">
-                  <td className="px-4 py-2 text-nowrap">{item.gateway}</td>
-                  <td className="px-4 py-2 text-nowrap">{item.initiated}</td>
-                  <td className="px-4 py-2 text-nowrap">{item.amount}</td>
-                  <td className="px-4 py-2 text-nowrap">{item.conversion}</td>
-                  <td className="px-4 py-2 text-nowrap">{item.status}</td>
-                  <td className="px-4 py-2 underline cursor-pointer hover:text-orange-300 text-nowrap">{item.action}</td>
-                </tr>
-              ))
+              filteredData.map((item, index) => {
+                const statusInfo = getStatusDisplay(item.status);
+                return (
+                  <tr key={index} className="bg-[#212529] text-left">
+                    <td className="px-4 py-2 text-nowrap">{item.gateway}</td>
+                    <td className="px-4 py-2 text-nowrap">{item.initiated}</td>
+                    <td className="px-4 py-2 text-nowrap">{item.amount}</td>
+                    <td className="px-4 py-2 text-nowrap">{item.conversion}</td>
+                    <td className="px-4 py-2 text-nowrap">
+                      <span className={`px-3 py-1 text-sm font-semibold rounded-full ${statusInfo.bg}`}>
+                        {statusInfo.label}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2 underline cursor-pointer text-nowrap ">
+                      {item.action}
+                    </td>
+                  </tr>
+                );
+              })
             ) : (
               <tr>
                 <td className="px-4 py-4 text-center text-white" colSpan="6">

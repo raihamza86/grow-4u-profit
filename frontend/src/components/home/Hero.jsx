@@ -38,15 +38,15 @@ const Hero = () => {
             >
               <div className="relative flex flex-col justify-center  items-center transition-transform duration-300 ease-in-out">
                 <span
-                  className={`absolute top-0  transition-all duration-300 ${
-                    isHovered ? "-translate-y-10 opacity-0" : "translate-y-0 opacity-100"
+                  className={`absolute top-0  transition-all duration-300 cursor-pointer ${
+                    isHovered ? "-translate-y-10 opacity-0 cursor-pointer" : "translate-y-0 opacity-100 cursor-pointer"
                   }`}
                 >
                   LOGIN
                 </span>
                 <span
-                  className={`absolute transition-all duration-300 ${
-                    isHovered ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                  className={`absolute transition-all duration-300 cursor-pointer${
+                    isHovered ? "translate-y-0 opacity-100 cursor-pointer" : "translate-y-10 opacity-0 cursor-pointer"
                   }`}
                 >
                   LOGIN
@@ -56,10 +56,10 @@ const Hero = () => {
                      <MdOutlineArrowOutward className="ml-10" /></span>
             </button>
 
-            <button className="text-lg lg:w-60 w-full px-8 py-4 gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center">
+            <button className="text-lg lg:w-60 cursor-pointer w-full px-8 py-4 gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center">
               EXPLORE PLANS <MdOutlineArrowOutward />
             </button>
-            <button className="text-lg lg:w-60 w-full px-8 py-2 gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center">
+            <button className="text-lg lg:w-60 w-full cursor-pointer px-8 py-2 gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold flex items-center justify-center">
               CONTACT US <MdOutlineArrowOutward />
             </button>
 
