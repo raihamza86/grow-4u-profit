@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
-const WithdrawEasyPaisa = ({ onClose,title }) => {
+const WithdrawEasyPaisa = ({ onClose, title }) => {
+  const navigate = useNavigate();
   const [price, setPrice] = useState("");
 
   const MovetoConfirmDeposit = () => {
-    alert("Proceeding to confirmation...");
-    // add your real logic here
+    navigate("/withdrawpreview", { state: { title, price } });
   };
 
   return (
@@ -44,7 +45,7 @@ const WithdrawEasyPaisa = ({ onClose,title }) => {
           <div className="flex">
             <input
               className="w-full border border-white border-r-0 rounded-l-md bg-transparent text-gray-300 px-3 py-2 focus:outline-none"
-              type="text"
+              type="number"
               value={price}
               onChange={(e) => {
                 setPrice(e.target.value);

@@ -11,7 +11,7 @@ const ProfitSection = () => {
       label: "Invite Friend",
       path: "/referrallink",
     },
-    { src: "withdraw.png", label: "Withdraw", path: "/withdraw" },
+    { src: "withdraw.png", label: "Withdraw", path: "/withdrawmoney" },
     { src: "task.png", label: "Task", path: "/task" },
     {
       src: "whatsapp group.png",

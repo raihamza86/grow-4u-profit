@@ -25,6 +25,16 @@ import DashboardLayout from './components/DashboardLayout';
 import WithdrawMoney from './components/WithdrawMoney';
 import WithdrawEasyPaisa from './components/WithdrawEasyPaisa';
 import WithdrawPreview from './components/WithdrawPreview';
+
+import AdminLayout from './AdminDashboard/AdminLayout';
+import AdminDashboard from './AdminDashboard/pages/Dashboard';
+import Ads from './AdminDashboard/components/Ads';
+import Users from './AdminDashboard/components/Users';
+import Packages from './AdminDashboard/components/Packages';
+import Payments from './AdminDashboard/components/Payments';
+import Referrals from './AdminDashboard/components/Referrals';
+import Reports from './AdminDashboard/components/Reports';
+import Settings from './AdminDashboard/components/Settings';
 import TaskProgress from './components/TaskProgress';
 import TaskTwo from './components/TaskTwo';
 import PageNotFound from './components/PageNotFound';
@@ -85,6 +95,21 @@ const router = createBrowserRouter([
       { path: "/changepassword", element: <ChangePassword /> },
     ]
   },
+  // Admin Routes
+  {
+    element: <AdminLayout />,
+    children: [
+      { path: "/admin", element: <AdminDashboard /> },
+      { path: "/admin/ads", element: <Ads /> },
+      { path: "/admin/users", element: <Users /> },
+      { path: "/admin/packages", element: <Packages /> },
+      { path: "/admin/payments", element: <Payments /> },
+      { path: "/admin/referrals", element: <Referrals /> },
+      { path: "/admin/reports", element: <Reports /> },
+      { path: "/admin/settings", element: <Settings /> },
+    ],
+  },
+  { path: "*", element: <div className="text-center py-20 text-2xl font-bold">Page not found.</div> },
   { path: "*", element: <PageNotFound/> },
 ]);
 

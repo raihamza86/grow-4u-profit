@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {FaTachometerAlt,FaGem,FaMoneyCheckAlt,FaTasks,FaWallet,FaKey,} from "react-icons/fa";
-import { MdHistory } from "react-icons/md";
+import { FaTachometerAlt, FaGem, FaMoneyCheckAlt, FaTasks, FaWallet, FaKey } from "react-icons/fa";
+import { MdHistory, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
 import "./SidebarStyle.css";
 
 const DashboardSidebar = () => {
   const menuItems = [
+    { icon: <MdOutlineAdminPanelSettings />, label: "Admin", path: "/admin" },
     { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard", active: true },
     { icon: <FaGem />, label: "Plans", path: "/plans" },
     { icon: <FaMoneyCheckAlt />, label: "Deposit", path: "/plans" },
     { icon: <MdHistory />, label: "Deposit History", path: "/deposithestory" },
     { icon: <FaTasks />, label: "Task", path: "/task" },
     { icon: <FaTasks />, label: "Task History", path: "/taskhistory" },
-    { icon: <FaWallet />, label: "Withdraw", path: "/dashboard" },
+    { icon: <FaWallet />, label: "Withdraw", path: "/withdrawmoney" },
     { icon: <MdHistory />, label: "Withdraw History", path: "/withdrawhistory" },
     { icon: <HiOutlineUserGroup />, label: "Referral", path: "/referrallink" },
     { icon: <FaKey />, label: "Referral Bounse", path: "/referralbounse" },
@@ -41,11 +42,10 @@ const DashboardSidebar = () => {
       {/* Menu Items */}
       <nav className="flex flex-col space-y-3">
         {menuItems.map((item, index) => {
-          const itemClasses = `flex items-center space-x-5 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 ${
-            item.active
-              ? "bg-[#FB983F] bg-opacity-20 text-white font-semibold"
-              : "hover:bg-[#FB983F] hover:bg-opacity-10 text-white"
-          }`;
+          const itemClasses = `flex items-center space-x-5 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 ${item.active
+            ? "bg-[#FB983F] bg-opacity-20 text-white font-semibold"
+            : "hover:bg-[#FB983F] hover:bg-opacity-10 text-white"
+            }`;
 
           return item.path ? (
             <Link key={index} to={item.path} className={itemClasses}>

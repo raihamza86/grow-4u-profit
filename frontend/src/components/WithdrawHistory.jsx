@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import BackButton from './BackButton';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const sampleData = [
   {
@@ -30,6 +32,10 @@ const sampleData = [
 ];
 
 const WithdrawHistory = () => {
+  const location = useLocation();
+  const title = location.state?.title || "Default Title";
+  const accountNumber = location.state?.accountNumber || "TXN123456";
+  const price = location.state?.price || "0000";
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = sampleData.filter((item) =>

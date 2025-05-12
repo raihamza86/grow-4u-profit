@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import WithdrawEasyPaisa from './WithdrawEasyPaisa'; // Make sure path is correct
+import BackButton from './BackButton';
 
 const WithdrawMoney = () => {
   const [showEasyPaisa, setShowEasyPaisa] = useState(false);
@@ -12,7 +13,7 @@ const WithdrawMoney = () => {
       buttonText: "WithdrawNow",
       buttonColor: "bg-gradient-to-tr from-[#E23C5D] to-[#F4B4C1] hover:from-[#F4B4C1] hover:to-[#E23C5D] transition-all duration-300 cursor-pointer",
       onClick: () => setShowEasyPaisa(true), // Show modal on click
-    //   title: 'Easypaisa'
+      //   title: 'Easypaisa'
     },
     {
       id: 2,
@@ -20,35 +21,36 @@ const WithdrawMoney = () => {
       buttonText: "WithdrawNow",
       buttonColor: "bg-gradient-to-tr from-[#E23C5D] to-[#F4B4C1] hover:from-[#F4B4C1] hover:to-[#E23C5D] transition-all duration-300 cursor-pointer",
       onClick: () => setShowjazcash(true),
-    //   title: 'Jazzcash'
+      //   title: 'Jazzcash'
     },
   ];
 
   return (
-    <>
+    <div className='h-[100vh]'>
       {/* Header Section */}
-      <div className="bg-gradient-to-b from-yellow-400 to-orange-600 flex items-center justify-start px-6 md:px-16 py-16 text-black">
+      <div className="h-[50%] bg-gradient-to-b from-yellow-400 to-orange-600 flex items-center justify-start px-6 md:px-16 py-16 text-black">
         <div className="text-left max-w-xl">
-          <h1 className="text-4xl font-bold">Withdraw Money</h1>
-          <h3 className="text-sm font-semibold mt-3">You Can Withdraw From Home</h3>
+          <h1 className="text-xl md:text-4xl font-bold">Withdraw Money</h1>
+          <h3 className="text-[14px] md:text-sm font-semibold mt-3">You Can Withdraw From Home</h3>
+          <BackButton /> {/* Assuming you have a BackButton component */}
         </div>
       </div>
 
       {/* Card Section */}
-      <div className="min-h-screen bg-gradient-to-b from-yellow-400 via-orange-500 to-[#F54635] flex items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="h-[50%] bg-gradient-to-b from-yellow-400 via-orange-500 to-[#F54635] flex flex-col items-center justify-center py-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-2 md:gap-6">
           {cards.map(({ id, img, buttonText, buttonColor, onClick }) => (
             <div
               key={id}
-              className="bg-[#1a2024] rounded-2xl shadow flex flex-col items-center p-5 w-72"
+              className="bg-[#1a2024] rounded-2xl shadow flex flex-col items-center py-4 px-2 md:px-0 md:p-5 md:w-60"
             >
               <img
                 src={img}
                 alt=""
-                className="rounded-xl mb-4 w-42 object-cover"
+                className="rounded-xl mb-4 w-16 md:w-30 object-cover"
               />
               <button
-                className={`${buttonColor} text-black px-4 py-2 rounded-full`}
+                className={`${buttonColor} text-black px-2 py-1 md:px-4 md:py-2 rounded-full text-[10px] md:text-[14px]`}
                 onClick={onClick}
               >
                 {buttonText}
@@ -59,9 +61,9 @@ const WithdrawMoney = () => {
       </div>
 
       {/* Modal Render */}
-      {showEasyPaisa && <WithdrawEasyPaisa onClose={() => setShowEasyPaisa(false)} title={"EasyPaisa"}/>}
-      {showjazcash && <WithdrawEasyPaisa onClose={() => setShowjazcash(false)} title={"JazzCash"}/>}
-    </>
+      {showEasyPaisa && <WithdrawEasyPaisa onClose={() => setShowEasyPaisa(false)} title={"EasyPaisa"} />}
+      {showjazcash && <WithdrawEasyPaisa onClose={() => setShowjazcash(false)} title={"JazzCash"} />}
+    </div>
   );
 };
 
