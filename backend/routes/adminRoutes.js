@@ -16,7 +16,7 @@ router.patch('/subscription/:id/reject', auth, isAdmin, rejectSubscription);
 // Get all users:
 router.get('/users', auth, isAdmin, getAllUsers);
 // Update user role
-router.put('/users/role', auth, isAdmin, updateUserRole);
+router.put('/users/:id', auth, isAdmin, updateUserRole);
 // Delete user by ID
 router.delete('/users/:userId', auth, isAdmin, deleteUser);
 

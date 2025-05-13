@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { Outlet } from "react-router-dom";
@@ -8,6 +10,7 @@ const AdminLayout = () => {
     return (
         <div className="flex bg-light-color min-h-screen">
             {/* Sidebar */}
+            <ToastContainer />
             <Sidebar />
 
             {/* Main Content Area */}

@@ -94,15 +94,19 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.updateUserRole = async (req, res) => {
-    const { userId, role } = req.body;
+    const { role } = req.body;
 
     if (!['user', 'admin'].includes(role)) {
         return res.status(400).json({ message: 'Invalid role' });
     }
 
     try {
-        const user = await User.findByIdAndUpdate(userId, { role }, { new: true }).select('-password');
+        const user = await User.findById(req.params.id)
         if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // Update user role
+        user.role = role;
+        await user.save();
 
         res.status(200).json({ message: 'User role updated', user });
     } catch (err) {
