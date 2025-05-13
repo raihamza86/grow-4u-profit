@@ -1,5 +1,7 @@
 import './App.css';
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -43,6 +45,7 @@ import PageNotFound from './components/PageNotFound';
 const MainLayout = () => {
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <Outlet />
       <Footer />
@@ -110,7 +113,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "*", element: <div className="text-center py-20 text-2xl font-bold">Page not found.</div> },
-  { path: "*", element: <PageNotFound/> },
+  { path: "*", element: <PageNotFound /> },
 ]);
 
 function App() {

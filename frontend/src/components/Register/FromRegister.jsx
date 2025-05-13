@@ -1,18 +1,21 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../../store/authSlice";
 
 const FromRegister = () => {
   const navigate = useNavigate();
+
+  // Redux mutation for user registration
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    invitation: "",
+    referredBy: "",
     agree: false,
   });
-
-  const [submittedData, setSubmittedData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -22,28 +25,45 @@ const FromRegister = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.agree) {
-      alert("Please agree to the terms before submitting.");
+      toast.error("Please agree to the terms before submitting.");
       return;
     }
 
-    console.log("Form submitted:", formData);
-    alert("Your message has been sent successfully!");
+    if (formData.password.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+    if (!formData.name || !formData.email || !formData.password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
 
-    setSubmittedData(formData);
+    try {
+      const response = await registerUser(formData).unwrap();
+      if (response) {
+        toast.success("Sign-Up successful! 🎉");
+        navigate("/login");
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          referredBy: "",
+          agree: false,
+        });
+      }
 
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      invitation: "",
-      agree: false,
-    });
-
-    navigate("/login");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      if (error?.status === 400) {
+        toast.error("User already exists. Please login.");
+      } else {
+        toast.error(error?.data?.message || "Something went wrong. Please try again later.");
+      }
+    }
   };
 
   return (
@@ -116,8 +136,8 @@ const FromRegister = () => {
             </label>
             <input
               type="text"
-              name="invitation"
-              value={formData.invitation}
+              name="referredBy"
+              value={formData.referredBy}
               onChange={handleChange}
               placeholder="Fill in the invitation code"
               className="w-full border-b border-gray-300 text-gray-800 py-2 focus:outline-none"
@@ -126,10 +146,13 @@ const FromRegister = () => {
 
           <button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-400 cursor-pointer border border-[#FFC402] text-white font-bold text-xl py-4 rounded-xl mt-2"
+            disabled={isLoading}
+            className={`w-full bg-orange-500 hover:bg-orange-400 border border-[#FFC402] text-white font-bold text-xl py-4 rounded-xl mt-2 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
           >
-            Quick Registration
+            {isLoading ? "Registering..." : "Quick Registration"}
           </button>
+
 
           <div className="flex items-start mt-4 text-xs text-gray-500">
             <input

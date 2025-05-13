@@ -10,12 +10,12 @@ const generateReferralCode = () => Math.random().toString(36).substring(2, 8);
 exports.register = async (req, res) => {
     const { name, email, password, referredBy } = req.body;
 
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    const expiry = new Date(Date.now() + 10 * 60 * 1000); // valid for 10 min
+    // const otp = Math.floor(100000 + Math.random() * 900000);
+    // const expiry = new Date(Date.now() + 10 * 60 * 1000); // valid for 10 min
 
     const settings = await Settings.findOne();
-    const signupBonus = settings?.signupBonus || 200;
-    const referralBonus = settings?.referralBonus || 100;
+    const signupBonus = settings?.signupBonus || 20;
+    const referralBonus = settings?.referralBonus || 50;
 
     try {
         const userExist = await User.findOne({ email });
@@ -28,8 +28,8 @@ exports.register = async (req, res) => {
             password: hashedPassword,
             referralCode: generateReferralCode(),
             referredBy: referredBy || null,
-            otpCode: otp,
-            otpExpiresAt: expiry,
+            // otpCode: otp,
+            // otpExpiresAt: expiry,
             isVerified: false
         });
 
@@ -68,11 +68,11 @@ exports.register = async (req, res) => {
         });
 
         // ✅ Send OTP email
-        await sendEmail(email, 'Verify Your Account', `
-                    <h3>Welcome ${name},</h3>
-                    <p>Your OTP is: <strong>${otp}</strong></p>
-                    <p>This OTP will expire in 10 minutes.</p>
-                `);
+        // await sendEmail(email, 'Verify Your Account', `
+        //             <h3>Welcome ${name},</h3>
+        //             <p>Your OTP is: <strong>${otp}</strong></p>
+        //             <p>This OTP will expire in 10 minutes.</p>
+        //         `);
 
         res.status(201).json({ token, user: { name: newUser.name, email: newUser.email }, message: 'Registration successful', });
     } catch (err) {
@@ -125,9 +125,9 @@ exports.login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-        if (!user.isVerified) {
-            return res.status(403).json({ message: 'Please verify your email before logging in.' });
-        }
+        // if (!user.isVerified) {
+        //     return res.status(403).json({ message: 'Please verify your email before logging in.' });
+        // }
 
         const token = jwt.sign(
             { id: user._id, role: user.role || 'user' },
@@ -231,6 +231,16 @@ exports.resetPassword = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
+};
+
+exports.logoutUser = (req, res) => {
+    res.cookie("token", "", {
+        httpOnly: true,
+        expires: new Date(0), // Expire immediately
+        sameSite: "Strict"
+    });
+
+    res.status(200).json({ message: "Logout successful" });
 };
 
 

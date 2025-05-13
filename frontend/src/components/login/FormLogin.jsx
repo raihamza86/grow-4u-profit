@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../store/authSlice";
+import { toast } from "react-toastify";
 
 const FormLogin = () => {
   const navigate = useNavigate();
+  const [loginUser, { isLoading }] = useLoginUserMutation();
 
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: "",
   });
-
-  const [submittedData, setSubmittedData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,20 +20,25 @@ const FormLogin = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Login submitted:", formData);
-    alert("Login successful!");
-
-    setSubmittedData(formData);
-
-    setFormData({
-      name: "",
-      password: "",
-    });
-
-    navigate("/dashboard"); // Navigate to another page after login (change as needed)
+    try {
+      const response = await loginUser(formData).unwrap();
+      if (response) {
+        toast.success("Login successful! 🎉");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+        setFormData({
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      const errorMsg = error?.data?.message || "Something went wrong. Please try again later.";
+      toast.error(errorMsg);
+    }
   };
 
   return (
@@ -69,11 +75,11 @@ const FormLogin = () => {
           className="px-6 pt-6 pb-8 space-y-8 text-sm text-gray-800 w-full"
         >
           <div>
-            <label className="block mb-1 text-xl font-medium">Enter Username</label>
+            <label className="block mb-1 text-xl font-medium">Enter Email</label>
             <input
-              type="text"
-              name="name"
-              value={formData.name}
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               placeholder="Enter your username"
               className="w-full border-b border-gray-300 text-gray-800 py-2 focus:outline-none"
@@ -96,10 +102,12 @@ const FormLogin = () => {
 
           <button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-400 cursor-pointer border border-[#FFC402] text-white font-bold text-xl py-4 rounded-xl mt-2"
+            className="w-full bg-orange-500 hover:bg-orange-400 cursor-pointer border border-[#FFC402] text-white font-bold text-xl py-4 rounded-xl mt-2 disabled:opacity-50"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </button>
+
         </form>
       </div>
     </div>

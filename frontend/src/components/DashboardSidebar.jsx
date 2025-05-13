@@ -1,12 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaTachometerAlt, FaGem, FaMoneyCheckAlt, FaTasks, FaWallet, FaKey } from "react-icons/fa";
 import { MdHistory, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { IoSettingsOutline } from "react-icons/io5";
 import "./SidebarStyle.css";
+import { useLogoutUserMutation } from "../store/authSlice";
+import { toast } from "react-toastify";
 
 const DashboardSidebar = () => {
+
+  const navigate = useNavigate();
+  const [logoutUser] = useLogoutUserMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser().unwrap();
+      toast.success("Logged out successfully");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Logout failed");
+    };
+  };
+
   const menuItems = [
     { icon: <MdOutlineAdminPanelSettings />, label: "Admin", path: "/admin" },
     { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard", active: true },
@@ -21,7 +40,7 @@ const DashboardSidebar = () => {
     { icon: <FaKey />, label: "Referral Bounse", path: "/referralbounse" },
     { icon: <IoSettingsOutline />, label: "Settings", path: "/profilesetting" },
     { icon: <IoSettingsOutline />, label: "Change Password", path: "/changepassword" },
-    { icon: <IoSettingsOutline />, label: "Logout", path: "/login" },
+    { icon: <IoSettingsOutline />, label: "Logout", onClick: handleLogout },
   ];
 
   return (
@@ -53,7 +72,7 @@ const DashboardSidebar = () => {
               <span className="text-lg">{item.label}</span>
             </Link>
           ) : (
-            <div key={index} className={itemClasses}>
+            <div key={index} className={itemClasses} onClick={item.onClick}>
               <div className="text-xl">{item.icon}</div>
               <span className="text-lg">{item.label}</span>
             </div>
