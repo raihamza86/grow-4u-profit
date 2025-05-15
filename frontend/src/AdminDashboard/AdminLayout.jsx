@@ -14,7 +14,7 @@ const AdminLayout = () => {
             <Sidebar />
 
             {/* Main Content Area */}
-            <div className="flex-1 md:ml-64 w-full">
+            <div className=" w-full sm:w-[75%] absolute right-0 h-full">
                 {/* Topbar stays static above */}
                 <Topbar />
 

@@ -78,10 +78,51 @@ export const adminApi = createApi({
             }),
             invalidatesTags: ['Admin'],
         }),
+
+        // ** Withdraw Management **
+
+        // Fetch all withdraw requests:
+        getAllWithdrawRequests: builder.query({
+            query: () => ({
+                url: '/withdraws',
+                method: 'GET',
+            }),
+            providesTags: ['Admin'],
+        }),
+
+        // Approve withdraw request:
+        approveWithdrawRequest: builder.mutation({
+            query: ({ requestId }) => ({
+                url: `/withdraws/approve/${requestId}`,
+                method: 'PUT',
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+        // Reject withdraw request:
+        rejectWithdrawRequest: builder.mutation({
+            query: ({ requestId, rejectionNote }) => ({
+                url: `/withdraws/reject/${requestId}`,
+                method: 'PUT',
+                body: { rejectionNote },
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+        // Delete withdraw request:
+        deleteWithdrawRequest: builder.mutation({
+            query: ({ requestId }) => ({
+                url: `/withdraws/${requestId}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+
     }),
 });
 
-export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation, useGetAllPackagesQuery, useCreatePackageMutation, useUpdatePackageMutation, useDeletePackageMutation } = adminApi;
+export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation, useGetAllPackagesQuery, useCreatePackageMutation, useUpdatePackageMutation, useDeletePackageMutation, useGetAllWithdrawRequestsQuery, useApproveWithdrawRequestMutation, useRejectWithdrawRequestMutation, useDeleteWithdrawRequestMutation } = adminApi;
 
 
 export default adminApi;

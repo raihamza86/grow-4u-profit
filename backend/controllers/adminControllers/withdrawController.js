@@ -56,4 +56,14 @@ exports.rejectWithdrawRequest = async (req, res) => {
     }
 };
 
+exports.deleteWithdrawRequest = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await WithdrawRequest.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Withdraw request deleted' });
+    } catch (err) {
+        res.status(500).json({ message: 'Error deleting request' });
+    }
+}
+
 

@@ -42,7 +42,7 @@ const Sidebar = () => {
             </div>
 
             {/* Desktop Sidebar */}
-            <aside className="hidden md:flex flex-col justify-between w-64 h-screen overflow-y-scroll hide-scrollbar p-5 fixed left-0 top-0 shadow-lg z-20 bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white">
+            <aside className="hidden md:flex flex-col justify-between w-[25%] h-screen overflow-y-scroll hide-scrollbar p-5 fixed left-0 top-0 shadow-lg z-20 bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white">
                 <div>
                     <h1 className="text-2xl font-bold mb-10 font-Fredoka text-white">Earnify Admin</h1>
                     <nav className="space-y-4">
