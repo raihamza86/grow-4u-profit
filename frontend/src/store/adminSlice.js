@@ -9,6 +9,8 @@ export const adminApi = createApi({
     }),
     tagTypes: ['Admin'],
     endpoints: (builder) => ({
+        // ** User Management **
+
         // Fetch all users:
         getAllUsers: builder.query({
             query: () => ({
@@ -37,11 +39,49 @@ export const adminApi = createApi({
             invalidatesTags: ['Admin'],
         }),
 
+        // ** Package Management **
 
+        // Fetch all packages:
+        getAllPackages: builder.query({
+            query: () => ({
+                url: '/packages',
+                method: 'GET',
+            }),
+            providesTags: ['Admin'],
+        }),
+
+        // Create package:
+        createPackage: builder.mutation({
+            query: (packageData) => ({
+                url: '/packages',
+                method: 'POST',
+                body: packageData,
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+        // Update package:
+        updatePackage: builder.mutation({
+            query: ({ packageId, packageData }) => ({
+                url: `/packages/${packageId}`,
+                method: 'PUT',
+                body: packageData,
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+        // Delete package:
+        deletePackage: builder.mutation({
+            query: (packageId) => ({
+                url: `/packages/${packageId}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Admin'],
+        }),
     }),
 });
 
-export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation } = adminApi;
+export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation, useGetAllPackagesQuery, useCreatePackageMutation, useUpdatePackageMutation, useDeletePackageMutation } = adminApi;
 
 
 export default adminApi;
