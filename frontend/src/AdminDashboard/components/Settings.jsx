@@ -1,39 +1,92 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../components/SidebarStyle.css";
+import { toast } from 'react-toastify';
+import { useCreateSettingsMutation, useGetAllSettingsQuery, useUpdateSettingsMutation } from '../../store/adminSlice';
 
 const Settings = () => {
-    const [bonuses, setBonuses] = useState([]);
+    const { data: setting, isLoading, error } = useGetAllSettingsQuery();
+
+    const [createSettings] = useCreateSettingsMutation();
+
+    const [updateSettings] = useUpdateSettingsMutation()
+
+    const [form, setForm] = useState({ signupBonus: '', referralBonus: '' });
+
+    const [isSaving, setIsSaving] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
-    const [form, setForm] = useState({ type: 'signup', amount: '' });
+    // const [form, setForm] = useState({ type: 'signup', amount: '' });
 
-    const handleSave = () => {
-        if (editingIndex !== null) {
-            const updated = [...bonuses];
-            updated[editingIndex] = form;
-            setBonuses(updated);
-        } else {
-            setBonuses([...bonuses, form]);
+    useEffect(() => {
+        if (setting) {
+            setForm({
+                signupBonus: setting.signupBonus || '',
+                referralBonus: setting.referralBonus || '',
+            });
         }
-        resetForm();
-    };
+    }, [setting]);
 
-    const handleEdit = (index) => {
-        setEditingIndex(index);
-        setForm(bonuses[index]);
-        setShowModal(true);
-    };
+    if (isLoading)
+        return (
+            <div className="flex justify-center items-center h-[70vh] bg-white">
+                <div className="flex flex-col items-center space-y-4">
+                    <div className="w-12 h-12 border-4 border-[#fd5c2d] border-dashed rounded-full animate-spin"></div>
+                    <p className="text-[#fd5c2d] font-semibold text-lg animate-pulse">
+                        Loading bonus...
+                    </p>
+                </div>
+            </div>
+        );
 
-    const handleDelete = (index) => {
-        const updated = bonuses.filter((_, i) => i !== index);
-        setBonuses(updated);
+    if (error) return <p className="text-red-500">Error loading bonus</p>;
+
+    if (!setting) {
+        return <p className="text-gray-600 text-center mt-4">🚫 No bonus settings found.</p>;
+    }
+
+
+    const handleSave = async () => {
+        setIsSaving(true);
+        try {
+            if (!setting) {
+                // Create settings
+                await createSettings({
+                    signupBonus: Number(form.signupBonus),
+                    referralBonus: Number(form.referralBonus),
+                }).unwrap();
+                toast.success('Settings created successfully! 🎉');
+            } else {
+                // Update settings
+                await updateSettings({
+                    id: setting._id,
+                    signupBonus: Number(form.signupBonus),
+                    referralBonus: Number(form.referralBonus),
+                }).unwrap();
+                toast.success('Settings updated successfully! 🎉');
+            }
+            resetForm();
+        } catch (err) {
+            console.error("Error saving settings:", err);
+            toast.error('Failed to save settings. Please try again.');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     const resetForm = () => {
-        setForm({ type: 'signup', amount: '' });
+        if (setting) {
+            setForm({
+                signupBonus: setting.signupBonus || '',
+                referralBonus: setting.referralBonus || '',
+            });
+        } else {
+            setForm({ signupBonus: '', referralBonus: '' });
+        }
         setEditingIndex(null);
         setShowModal(false);
     };
+
+
 
     return (
         <div className="bg-gradient-to-b from-[#ff512f] to-[#f09819] text-white p-6 rounded-lg shadow-lg">
@@ -46,77 +99,71 @@ const Settings = () => {
                 Add Bonus Rule
             </button>
 
-            {bonuses.length > 0 ? (
-                <div className="space-y-4">
-                    {bonuses.map((bonus, index) => (
-                        <div key={index} className="bg-white bg-opacity-10 p-4 rounded flex justify-between items-center overflow-x-scroll hide-scrollbar gap-8 md:gap-0">
-                            <div>
-                                <h3 className="text-xl font-bold capitalize text-yellow-400 text-nowrap">{bonus.type} Bonus</h3>
-                                <p className="text-sm text-orange-400">Amount: PKR {bonus.amount}</p>
-                            </div>
-                            <div className="space-x-2 flex items-center">
-                                <button
-                                    onClick={() => handleEdit(index)}
-                                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(index)}
-                                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+            {setting ? (
+                <div className="bg-white bg-opacity-10 p-4 rounded flex justify-between items-center overflow-x-scroll hide-scrollbar gap-8 md:gap-0">
+                    <div>
+                        <h3 className="text-xl font-bold capitalize text-yellow-400 text-nowrap">Signup Bonus</h3>
+                        <p className="text-sm text-orange-400">PKR {setting.signupBonus}</p>
+                        <h3 className="text-xl font-bold capitalize text-yellow-400 text-nowrap mt-2">Referral Bonus</h3>
+                        <p className="text-sm text-orange-400">PKR {setting.referralBonus}</p>
+                    </div>
+                    <div className="space-x-2 flex items-center">
+                        <button
+                            onClick={() => {
+                                setForm({
+                                    signupBonus: setting.signupBonus || '',
+                                    referralBonus: setting.referralBonus || '',
+                                });
+                                setShowModal(true);
+                                setEditingIndex(0);
+                            }}
+                            className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
+                            disabled={!setting}
+                        >
+                            Edit
+                        </button>
+
+                    </div>
                 </div>
             ) : (
-                <p className="text-sm text-orange-100">No bonus settings added yet.</p>
+                <p className="text-sm text-orange-100">No bonus settings found.</p>
             )}
+
 
             {/* Modal for Adding/Editing */}
             {showModal && (
-                <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 px-2 md:px-0">
-                    <div className="bg-[#1e293b] text-white p-6 rounded-lg w-full max-w-md">
-                        <h2 className="text-yellow-300 text-xl font-bold mb-4">
-                            {editingIndex !== null ? 'Edit Bonus Rule' : 'Add Bonus Rule'}
-                        </h2>
+                <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-6 rounded shadow-lg w-[90%] md:w-1/3 text-black">
+                        <h2 className="text-yellow-300 text-xl font-bold mb-4">Edit Bonus Settings</h2>
 
-                        <select
-                            value={form.type}
-                            onChange={(e) => setForm({ ...form, type: e.target.value })}
-                            className="w-full p-2 mb-4 rounded bg-[#0f172a] border border-yellow-400"
-                        >
-                            <option value="signup">Signup Bonus</option>
-                            <option value="referral">Referral Bonus</option>
-                        </select>
-
+                        <label className="block mb-2">Signup Bonus (PKR)</label>
                         <input
                             type="number"
-                            placeholder="Amount in PKR"
-                            value={form.amount}
-                            onChange={(e) => setForm({ ...form, amount: e.target.value })}
-                            className="w-full p-2 mb-4 rounded bg-[#0f172a] border border-yellow-400"
+                            value={form.signupBonus}
+                            onChange={(e) => setForm({ ...form, signupBonus: e.target.value })}
+                            className="w-full p-2 mb-4 rounded bg-[#fff] border border-yellow-400"
+                        />
+
+                        <label className="block mb-2">Referral Bonus (PKR)</label>
+                        <input
+                            type="number"
+                            value={form.referralBonus}
+                            onChange={(e) => setForm({ ...form, referralBonus: e.target.value })}
+                            className="w-full p-2 mb-4 rounded bg-[#fff] border border-yellow-400"
                         />
 
                         <div className="flex justify-end gap-3">
-                            <button
-                                onClick={resetForm}
-                                className="bg-gray-500 px-4 py-2 rounded hover:bg-gray-600"
-                            >
+                            <button onClick={resetForm} className="bg-gray-500 px-4 py-2 rounded hover:bg-gray-600">
                                 Cancel
                             </button>
-                            <button
-                                onClick={handleSave}
-                                className="bg-green-600 px-4 py-2 rounded hover:bg-green-700 font-semibold"
-                            >
-                                {editingIndex !== null ? 'Update' : 'Save'}
+                            <button onClick={handleSave} className="bg-green-600 px-4 py-2 rounded hover:bg-green-700 font-semibold" disabled={isSaving}>
+                                {isSaving ? 'Saving...' : (setting ? 'Update' : 'Save')}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
+
         </div>
     );
 };

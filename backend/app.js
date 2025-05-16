@@ -27,7 +27,7 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/wallet', walletRoutes);
-app.use('/api/settings', settingsRoutes);
+app.use('/api/admin/settings', settingsRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/withdraw', withdrawRoutes);
 

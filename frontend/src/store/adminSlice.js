@@ -118,11 +118,52 @@ export const adminApi = createApi({
             invalidatesTags: ['Admin'],
         }),
 
+        // ** Subscription Management **
+
+        // Fetch all subscriptions:
+        getAllSubscriptions: builder.query({
+            query: () => ({
+                url: '/subscriptions',
+                method: 'GET',
+            }),
+            providesTags: ['Admin'],
+        }),
+
+
+        // ** Setting Management **
+        getAllSettings: builder.query({
+            query: () => ({
+                url: '/settings',
+                method: 'GET',
+            }),
+            providesTags: ['Admin'],
+        }),
+
+        // Create settings:
+        createSettings: builder.mutation({
+            query: (settingsData) => ({
+                url: '/settings',
+                method: 'POST',
+                body: settingsData,
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
+        // Update settings:
+        updateSettings: builder.mutation({
+            query: (settingsData) => ({
+                url: '/settings',
+                method: 'PUT',
+                body: settingsData,
+            }),
+            invalidatesTags: ['Admin'],
+        }),
+
 
     }),
 });
 
-export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation, useGetAllPackagesQuery, useCreatePackageMutation, useUpdatePackageMutation, useDeletePackageMutation, useGetAllWithdrawRequestsQuery, useApproveWithdrawRequestMutation, useRejectWithdrawRequestMutation, useDeleteWithdrawRequestMutation } = adminApi;
+export const { useGetAllUsersQuery, useUpdateUserStatusMutation, useDeleteUserMutation, useGetAllPackagesQuery, useCreatePackageMutation, useUpdatePackageMutation, useDeletePackageMutation, useGetAllWithdrawRequestsQuery, useApproveWithdrawRequestMutation, useRejectWithdrawRequestMutation, useDeleteWithdrawRequestMutation, useGetAllSubscriptionsQuery, useGetAllSettingsQuery, useCreateSettingsMutation, useUpdateSettingsMutation } = adminApi;
 
 
 export default adminApi;
